@@ -11,14 +11,29 @@
     const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
+// Crea un movimiento continuo y aleatorio
+    const floatItems = (targets: string) => {
+      gsap.to(targets, {
+        x: "random(-15, 15)",       // Mueve aleatoriamente en X
+        y: "random(-10, 10)",       // Mueve aleatoriamente en Y
+        rotation: "random(-1, 1)",  // Rotación muy sutil para realismo
+        duration: "random(3, 5)",   // Duración variable (lenta)
+        ease: "sine.inOut",         // Suavidad tipo "ola"
+        onComplete: () => floatItems(targets) // Se vuelve a llamar a sí misma infinitamente
+      });
+    };
+
+
     // 1) Textos sección 1 (desde "lejos")
     gsap.from('.section-1 p', {
       opacity: 0,
       y: 80,
-      scale: 0.7,
-      duration: 1.2,
+      scale: 0.12,
+      duration: 2.5,
       ease: 'power3.out',
-      stagger: 0.18
+      stagger: 0.18,
+      delay: 0.45,
+      onComplete: () => floatItems('.section-1 p')
     });
 
     // 2) Pilares: ya están posicionados con Tailwind en su sitio (final).
@@ -27,16 +42,16 @@
       opacity: 0,
       scale: 0.12,
       y: 30,
-      duration: 1.3,
+      duration: 2.5,
       ease: 'power2.out',
-      delay: 0.35
+      delay: 0.45
     });
 
     gsap.from('.pillar2', {
       opacity: 0,
       scale: 0.12,
       y: 30,
-      duration: 1.3,
+      duration: 2.5,
       ease: 'power2.out',
       delay: 0.45
     });
@@ -67,6 +82,8 @@
       ease: 'power3.out',
       stagger: 0.18
     });
+
+
   });
 </script>
 
@@ -77,7 +94,7 @@
     <img
       src={column}
       alt="Columna izquierda"
-      class="pillar2 absolute top-[47%] -left-[18%] -translate-y-1/2 h-250 w-auto z-0 pointer-events-none"
+      class="pillar1 absolute top-[47%] -left-[18%] -translate-y-1/2 h-250 w-auto z-0 pointer-events-none"
       aria-hidden="true"
     />
 
