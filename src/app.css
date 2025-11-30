@@ -1,3 +1,29 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@layer base {
+  /* Estoico (default) */
+  :root[data-theme='stoic'] {
+    --bg: #111827;         /* gris oscuro neutro, rollo estoico */
+    --fg: #e5e7eb;         /* texto claro */
+    --muted: #9ca3af;      /* texto secundario */
+    --accent: #fbbf24;     /* dorado/ambar */
+  }
+
+  /* Tema claro */
+  :root[data-theme='light'] {
+    --bg: #f9fafb;         /* gris muy claro */
+    --fg: #111827;         /* texto oscuro */
+    --muted: #4b5563;      /* gris medio para secundarios */
+    --accent: #b45309;     /* marrón/anaranjado */
+  }
+
+  /* Tema oscuro */
+  :root[data-theme='dark'] {
+    --bg: #020617;         /* casi negro */
+    --fg: #e5e7eb;         /* texto claro */
+    --muted: #9ca3af;      /* gris medio */
+    --accent: #f97316;     /* naranja vivo */
+  }
+}

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import column from '$lib/assets/column1.svg';
+  import { theme, type Theme } from '$lib/stores/theme';
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -87,9 +88,9 @@
   });
 </script>
 
-<!-- Markup: los pilares están colocados con Tailwind en su posición final -->
-<div class="flex min-h-screen flex-col items-center justify-center bg-neutral-800 p-8">
-  <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-neutral-400">
+<!-- Markup: los pilares están colocados con Tailwind en su posición final bg-[var(--bg)] text-[var(--fg)] -->
+<div class="flex min-h-screen flex-col items-center justify-center bg-[var(--bg)] p-8">
+  <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
     <!-- Pilar izquierdo: colocado en left-1/4 (posición final definida por Tailwind) -->
     <img
       src={column}
@@ -115,14 +116,14 @@
     </div>
   </div>
 
-  <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-neutral-400">
+  <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
     <p class="my-4 w-full md:w-2/3 text-center text-2xl">2026/01/01</p>
     <p class="my-4 w-full md:w-2/3 text-left text-xl">
       Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aun cuando estos contradicen su estilo...
     </p>
   </div>
 
-  <div class="section-3 flex min-h-screen flex-col items-center justify-center font-semibold text-neutral-400">
+  <div class="section-3 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
     <p class="my-4 w-full md:w-2/3 text-center text-2xl">Aquí irá el footer y toda la info relacionada.</p>
     <p class="my-4 w-full md:w-2/3 text-center text-xl">Texto ejemplo</p>
   </div>
