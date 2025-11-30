@@ -15,16 +15,16 @@
     const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
-    // const floatItems = (targets: string) => {
+    // Flote suave en eje Y para personajes
+    // const floatCharacters = (targets: string) => {
     //   gsap.to(targets, {
-    //     x: "random(-15, 15)",       // Mueve aleatoriamente en X
-    //     y: "random(-10, 10)",       // Mueve aleatoriamente en Y
-    //     rotation: "random(-1, 1)",  // Rotación muy sutil para realismo
-    //     duration: "random(3, 5)",   // Duración variable (lenta)
-    //     ease: "sine.inOut",         // Suavidad tipo "ola"
-    //     onComplete: () => floatItems(targets) // Se vuelve a llamar a sí misma infinitamente
+    //     y: 6,                   // se mueve solo 6px hacia abajo y arriba
+    //     duration: 6,            // movimiento muy lento
+    //     ease: 'sine.inOut',     // movimiento suave tipo ola
+    //     yoyo: true,             // vuelve hacia atrás
+    //     repeat: -1              // infinito
     //   });
-    // }; 
+    // };
 
     // 1) Textos sección 1 (desde "lejos")
     gsap.from('.section-1 p', { opacity: 0, y: 80, scale: 0.12, duration: 2.5, ease: 'power3.out', stagger: 0.18, delay: 0.45 });
@@ -105,7 +105,7 @@
       ease: 'power2.out'
     });
 
-    gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18, });
+    gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
 
     gsap.from('.apollo-figure', {
       scrollTrigger: {
@@ -116,7 +116,7 @@
       y: 40,
       scale: 0.8,
       duration: 1.4,
-      ease: 'power2.out',
+      ease: 'power2.out'
     });
 
     gsap.from('.poseidon-figure', {
@@ -130,6 +130,12 @@
       duration: 1.4,
       ease: 'power2.out'
     });
+
+    // Activar flote en todos los personajes
+    // floatCharacters('.asklepios-figure');
+    // floatCharacters('.woman-figure');
+    // floatCharacters('.apollo-figure');
+    // floatCharacters('.poseidon-figure');
   });
 </script>
 
@@ -186,14 +192,14 @@
     <img
       src={apollo}
       alt="Apollo"
-      class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
+      class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-25"
       aria-hidden="true"
     />
 
     <img
       src={poseidon}
       alt="Poseidon"
-      class="poseidon-figure pointer-events-none absolute top-1/2 -right-230 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
+      class="poseidon-figure pointer-events-none absolute top-5/12 -right-230 z-0 h-225 w-auto -translate-y-1/2 -rotate-25"
       aria-hidden="true"
     />
 
