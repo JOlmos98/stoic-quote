@@ -13,16 +13,16 @@
     gsap.registerPlugin(ScrollTrigger);
 
 // Crea un movimiento continuo y aleatorio
-    const floatItems = (targets: string) => {
-      gsap.to(targets, {
-        x: "random(-15, 15)",       // Mueve aleatoriamente en X
-        y: "random(-10, 10)",       // Mueve aleatoriamente en Y
-        rotation: "random(-1, 1)",  // Rotación muy sutil para realismo
-        duration: "random(3, 5)",   // Duración variable (lenta)
-        ease: "sine.inOut",         // Suavidad tipo "ola"
-        onComplete: () => floatItems(targets) // Se vuelve a llamar a sí misma infinitamente
-      });
-    };
+    // const floatItems = (targets: string) => {
+    //   gsap.to(targets, {
+    //     x: "random(-15, 15)",       // Mueve aleatoriamente en X
+    //     y: "random(-10, 10)",       // Mueve aleatoriamente en Y
+    //     rotation: "random(-1, 1)",  // Rotación muy sutil para realismo
+    //     duration: "random(3, 5)",   // Duración variable (lenta)
+    //     ease: "sine.inOut",         // Suavidad tipo "ola"
+    //     onComplete: () => floatItems(targets) // Se vuelve a llamar a sí misma infinitamente
+    //   });
+    // };
 
 
     // 1) Textos sección 1 (desde "lejos")
@@ -34,7 +34,7 @@
       ease: 'power3.out',
       stagger: 0.18,
       delay: 0.45,
-      onComplete: () => floatItems('.section-1 p')
+      // onComplete: () => floatItems('.section-1 p')
     });
 
     // 2) Pilares: ya están posicionados con Tailwind en su sitio (final).
@@ -119,8 +119,7 @@
   <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
     <p class="my-4 w-full md:w-2/3 text-center text-2xl">2026/01/01</p>
     <p class="my-4 w-full md:w-2/3 text-left text-xl">
-      Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aun cuando estos contradicen su estilo...
-    </p>
+Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una idea con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.     </p>
   </div>
 
   <div class="section-3 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
