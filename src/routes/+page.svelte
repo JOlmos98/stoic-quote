@@ -15,6 +15,17 @@
     const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
+    // const floatItems = (targets: string) => {
+    //   gsap.to(targets, {
+    //     x: "random(-15, 15)",       // Mueve aleatoriamente en X
+    //     y: "random(-10, 10)",       // Mueve aleatoriamente en Y
+    //     rotation: "random(-1, 1)",  // Rotación muy sutil para realismo
+    //     duration: "random(3, 5)",   // Duración variable (lenta)
+    //     ease: "sine.inOut",         // Suavidad tipo "ola"
+    //     onComplete: () => floatItems(targets) // Se vuelve a llamar a sí misma infinitamente
+    //   });
+    // }; 
+
     // 1) Textos sección 1 (desde "lejos")
     gsap.from('.section-1 p', { opacity: 0, y: 80, scale: 0.12, duration: 2.5, ease: 'power3.out', stagger: 0.18, delay: 0.45 });
 
@@ -94,7 +105,31 @@
       ease: 'power2.out'
     });
 
-    gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
+    gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18, });
+
+    gsap.from('.apollo-figure', {
+      scrollTrigger: {
+        trigger: '.section-3', // cuando entra la sección 3
+        start: 'top 80%' // empieza cuando el top de section-3 llega al 80% del viewport
+      },
+      opacity: 0,
+      y: 40,
+      scale: 0.8,
+      duration: 1.4,
+      ease: 'power2.out',
+    });
+
+    gsap.from('.poseidon-figure', {
+      scrollTrigger: {
+        trigger: '.section-3', // a
+        start: 'top 80%'
+      },
+      opacity: 0,
+      y: 40,
+      scale: 0.8,
+      duration: 1.4,
+      ease: 'power2.out'
+    });
   });
 </script>
 
@@ -147,33 +182,26 @@
     </p>
   </div>
 
-  <div class="section-3 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <!-- <img
+  <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
+    <img
       src={apollo}
       alt="Apollo"
-      class="pointer-events-none absolute top-1/2 -left-70 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
+      class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
       aria-hidden="true"
-    /> -->
-    <!-- <img
+    />
+
+    <img
       src={poseidon}
       alt="Poseidon"
-      class="pointer-events-none absolute top-1/2 -left-70 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
+      class="poseidon-figure pointer-events-none absolute top-1/2 -right-230 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
       aria-hidden="true"
-    /> -->
+    />
+
     <p class="my-4 w-full text-center text-2xl md:w-2/3">Aquí irá el footer y toda la info relacionada.</p>
     <p class="my-4 w-full text-center text-xl md:w-2/3">Texto ejemplo</p>
   </div>
 </div>
 
-<!-- const floatItems = (targets: string) => {
-      gsap.to(targets, {
-        x: "random(-15, 15)",       // Mueve aleatoriamente en X
-        y: "random(-10, 10)",       // Mueve aleatoriamente en Y
-        rotation: "random(-1, 1)",  // Rotación muy sutil para realismo
-        duration: "random(3, 5)",   // Duración variable (lenta)
-        ease: "sine.inOut",         // Suavidad tipo "ola"
-        onComplete: () => floatItems(targets) // Se vuelve a llamar a sí misma infinitamente
-      });
-    }; 
+<!-- 
     
           // onComplete: () => floatItems('.section-1 p') -->
