@@ -1,8 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import column from '$lib/assets/column1.svg';
-  import apollo from '$lib/assets/Apollo.svg';
+  import woman from '$lib/assets/Woman2.svg';
   import asklepios from '$lib/assets/Asklepios.svg';
+  import apollo from '$lib/assets/Apollo.svg';
+  import poseidon from '$lib/assets/Poseidon.svg';
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -67,6 +69,30 @@
 
     // 3) Secciones siguientes con ScrollTrigger (mantengo tu lógica)
     gsap.from('.section-2 p', { scrollTrigger: { trigger: '.section-2', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
+    // Figuras de la sección 2 (Asklepios y Woman) aparecen suavemente al entrar la sección
+    gsap.from('.asklepios-figure', {
+      scrollTrigger: {
+        trigger: '.section-2', // cuando la sección 2 entra en pantalla
+        start: 'top 80%' // empieza cuando el top de section-2 llega al 80% del viewport
+      },
+      opacity: 0, // empieza transparente
+      y: 40, // un poco más abajo
+      scale: 0.8, // ligeramente más pequeña
+      duration: 1.4, // animación algo lenta
+      ease: 'power2.out' // easing suave
+    });
+
+    gsap.from('.woman-figure', {
+      scrollTrigger: {
+        trigger: '.section-2', // mismo trigger
+        start: 'top 80%'
+      },
+      opacity: 0,
+      y: 40,
+      scale: 0.8,
+      duration: 1.4,
+      ease: 'power2.out'
+    });
 
     gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
   });
@@ -98,19 +124,22 @@
     </div>
   </div>
 
-  <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-        <img
+  <!-- <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]"> -->
+  <div class="section-2 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
+    <img
       src={asklepios}
       alt="Asklepios"
-      class="pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2"
+      class="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
       aria-hidden="true"
     />
-        <img
-      src={apollo}
-      alt="Apollo"
-      class="pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2"
+
+    <img
+      src={woman}
+      alt="Woman"
+      class="woman-figure pointer-events-none absolute top-1/2 -left-50 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
       aria-hidden="true"
     />
+
     <p class="my-4 w-full text-center text-2xl md:w-2/3">2026/01/01</p>
     <p class="my-4 w-full text-left text-xl md:w-2/3">
       Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una idea
@@ -119,6 +148,18 @@
   </div>
 
   <div class="section-3 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
+    <!-- <img
+      src={apollo}
+      alt="Apollo"
+      class="pointer-events-none absolute top-1/2 -left-70 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
+      aria-hidden="true"
+    /> -->
+    <!-- <img
+      src={poseidon}
+      alt="Poseidon"
+      class="pointer-events-none absolute top-1/2 -left-70 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
+      aria-hidden="true"
+    /> -->
     <p class="my-4 w-full text-center text-2xl md:w-2/3">Aquí irá el footer y toda la info relacionada.</p>
     <p class="my-4 w-full text-center text-xl md:w-2/3">Texto ejemplo</p>
   </div>
