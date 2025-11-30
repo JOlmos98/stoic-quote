@@ -20,20 +20,15 @@
   };
 
   // Etiqueta accesible según el tema actual
-  $: ariaLabel =
-    $theme === 'stoic'
-      ? 'Cambiar tema (actual: Stoic)'
-      : $theme === 'light'
-      ? 'Cambiar tema (actual: Light)'
-      : 'Cambiar tema (actual: Dark)';
+  $: ariaLabel = $theme === 'stoic' ? 'Cambiar tema (actual: Stoic)' : $theme === 'light' ? 'Cambiar tema (actual: Light)' : 'Cambiar tema (actual: Dark)';
 </script>
 
-<!-- Botón fijo, centrado arriba -->
-<div class="fixed left-1/2 top-4 z-50 -translate-x-1/2">
+<!-- Botón fijo, centrado arriba  rounded-full border border-[var(--fg)] shadow-lg bg-[var(--bg)] hover:bg-[var(--accent)] hover:text-[var(--fg)]-->
+<div class="fixed top-4 left-1/2 z-50 -translate-x-1/2">
   <button
     type="button"
     on:click={cycleTheme}
-    class="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--fg)] bg-[var(--bg)] text-[var(--fg)] shadow-lg transition hover:scale-105 hover:bg-[var(--accent)] hover:text-[var(--fg)]"
+    class="flex h-10 w-10 items-center justify-center text-[var(--fg)] transition hover:scale-105"
     aria-label={ariaLabel}
   >
     {#if $theme === 'stoic'}
