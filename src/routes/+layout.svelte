@@ -1,12 +1,18 @@
 <script lang="ts">
-	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
+  import '../app.css';
+  import favicon from '$lib/assets/favicon.ico';
+  import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 
-	let { children } = $props();
+  let { children } = $props();
 </script>
 
+<ThemeSwitcher />
+
 <svelte:head>
-	<link rel="icon" href={favicon} />
+  <link
+    rel="icon"
+    href={favicon}
+  />
 </svelte:head>
 
 {@render children?.()}
