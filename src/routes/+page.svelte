@@ -5,6 +5,7 @@
   import asklepios from '$lib/assets/Asklepios.svg';
   import apollo from '$lib/assets/Apollo.svg';
   import poseidon from '$lib/assets/Poseidon.svg';
+  import Column from '$lib/components/SVGs/Column.svelte';
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -88,7 +89,7 @@
       },
       opacity: 0, // empieza transparente
       y: 40, // un poco más abajo
-      scale: 0.8, // ligeramente más pequeña
+      scale: 0.5, // ligeramente más pequeña
       duration: 1.4, // animación algo lenta
       ease: 'power2.out' // easing suave
     });
@@ -100,7 +101,7 @@
       },
       opacity: 0,
       y: 40,
-      scale: 0.8,
+      scale: 0.5,
       duration: 1.4,
       ease: 'power2.out'
     });
@@ -114,7 +115,7 @@
       },
       opacity: 0,
       y: 40,
-      scale: 0.8,
+      scale: 0.5,
       duration: 1.4,
       ease: 'power2.out'
     });
@@ -126,7 +127,7 @@
       },
       opacity: 0,
       y: 40,
-      scale: 0.8,
+      scale: 0.5,
       duration: 1.4,
       ease: 'power2.out'
     });
@@ -143,19 +144,31 @@
 <div class="flex min-h-screen flex-col items-center justify-center bg-[var(--bg)] p-8">
   <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
     <!-- Pilar izquierdo: colocado en left-1/4 (posición final definida por Tailwind) -->
-    <img
+    <!-- <img
       src={column}
       alt="Columna izquierda"
       class="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2"
       aria-hidden="true"
-    />
+    /> -->
 
     <!-- Pilar derecho: colocado en right-1/4 (posición final definida por Tailwind) -->
-    <img
+    <!-- <img
       src={column}
       alt="Columna derecha"
       class="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2"
       aria-hidden="true"
+    /> -->
+
+    <!-- Pilar izquierdo -->
+    <Column
+      aria-hidden="true"
+      className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2 text-[var(--pilar)]"
+    />
+
+    <!-- Pilar derecho -->
+    <Column
+      aria-hidden="true"
+      className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2 text-[var(--pilar)]"
     />
 
     <!-- Contenido textual (por encima de los pilares) -->
