@@ -1,12 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import column from '$lib/assets/column1.svg';
   import woman from '$lib/assets/Woman2.svg';
   import asklepios from '$lib/assets/Asklepios.svg';
-  import apollo from '$lib/assets/Apollo.svg';
-  import poseidon from '$lib/assets/Poseidon.svg';
   import Column from '$lib/components/SVGs/Column.svelte';
-  import Apollo from '$lib/components/SVGs/Apollo.svelte';
+  import Asklepios from '$lib/components/SVGs/Asklepios.svelte';
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -16,17 +13,6 @@
     const gsap = gsapModule.default;
     const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
-
-    // Flote suave en eje Y para personajes
-    // const floatCharacters = (targets: string) => {
-    //   gsap.to(targets, {
-    //     y: 6,                   // se mueve solo 6px hacia abajo y arriba
-    //     duration: 6,            // movimiento muy lento
-    //     ease: 'sine.inOut',     // movimiento suave tipo ola
-    //     yoyo: true,             // vuelve hacia atrás
-    //     repeat: -1              // infinito
-    //   });
-    // };
 
     // 1) Textos sección 1 (desde "lejos")
     gsap.from('.section-1 p', { opacity: 0, y: 80, scale: 0.12, duration: 2.5, ease: 'power3.out', stagger: 0.18, delay: 0.45 });
@@ -132,44 +118,16 @@
       duration: 1.4,
       ease: 'power2.out'
     });
-
-    // Activar flote en todos los personajes
-    // floatCharacters('.asklepios-figure');
-    // floatCharacters('.woman-figure');
-    // floatCharacters('.apollo-figure');
-    // floatCharacters('.poseidon-figure');
   });
 </script>
 
 <!-- Markup: los pilares están colocados con Tailwind en su posición final bg-[var(--bg)] text-[var(--fg)] -->
 <div class="flex min-h-screen flex-col items-center justify-center bg-[var(--bg)] p-8">
   <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <!-- Pilar izquierdo: colocado en left-1/4 (posición final definida por Tailwind) -->
-    <!-- <img
-      src={column}
-      alt="Columna izquierda"
-      class="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2"
-      aria-hidden="true"
-    /> -->
-
-    <!-- Pilar derecho: colocado en right-1/4 (posición final definida por Tailwind) -->
-    <!-- <img
-      src={column}
-      alt="Columna derecha"
-      class="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2"
-      aria-hidden="true"
-    /> -->
-
     <!-- Pilar izquierdo -->
     <Column className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
     <!-- Pilar derecho -->
-    <!-- <Column
-    aria-hidden="true"
-      aria-hidden="true"
-      className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2 text-red-500"
-      aria-hidden="true"
-    /> -->
     <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
     <!-- Contenido textual (por encima de los pilares) -->
@@ -181,12 +139,16 @@
 
   <!-- <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]"> -->
   <div class="section-2 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <img
+    <!-- <img
       src={asklepios}
       alt="Asklepios"
       class="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
       aria-hidden="true"
-    />
+    /> -->
+<Asklepios
+  className="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
+/>
+    <!-- <Asklepios className="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20" /> -->
 
     <img
       src={woman}
@@ -203,30 +165,7 @@
   </div>
 
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <img
-      src={apollo}
-      alt="Apollo"
-      class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-25"
-      aria-hidden="true"
-    />
-
-    <!-- <Apollo
-  class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-25"
-  aria-hidden="true"
-/> -->
-
-    <img
-      src={poseidon}
-      alt="Poseidon"
-      class="poseidon-figure pointer-events-none absolute top-5/12 -right-230 z-0 h-225 w-auto -translate-y-1/2 -rotate-25"
-      aria-hidden="true"
-    />
-
     <p class="my-4 w-full text-center text-2xl md:w-2/3">Aquí irá el footer y toda la info relacionada.</p>
     <p class="my-4 w-full text-center text-xl md:w-2/3">Texto ejemplo</p>
   </div>
 </div>
-
-<!-- 
-    
-          // onComplete: () => floatItems('.section-1 p') -->
