@@ -6,6 +6,7 @@
   import apollo from '$lib/assets/Apollo.svg';
   import poseidon from '$lib/assets/Poseidon.svg';
   import Column from '$lib/components/SVGs/Column.svelte';
+  import Apollo from '$lib/components/SVGs/Apollo.svelte';
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -160,16 +161,16 @@
     /> -->
 
     <!-- Pilar izquierdo -->
-    <Column
-      aria-hidden="true"
-      className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2 text-[var(--pilar)]"
-    />
+    <Column className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
     <!-- Pilar derecho -->
-    <Column
+    <!-- <Column
+    aria-hidden="true"
       aria-hidden="true"
-      className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2 text-[var(--pilar)]"
-    />
+      className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2 text-red-500"
+      aria-hidden="true"
+    /> -->
+    <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
     <!-- Contenido textual (por encima de los pilares) -->
     <div class="z-10 flex flex-col items-center px-4">
@@ -208,6 +209,11 @@
       class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-25"
       aria-hidden="true"
     />
+
+    <!-- <Apollo
+  class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-25"
+  aria-hidden="true"
+/> -->
 
     <img
       src={poseidon}

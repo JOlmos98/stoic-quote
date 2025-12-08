@@ -9,8 +9,8 @@
     --fg: #785D41; /* texto claro */
     --muted: #9ca3af; /* texto secundario */
     --accent: #e3c36f; /* dorado/ambar */
-    --pilar: #f9fafb;
-    --black: #111827; /* texto oscuro */
+    --pillarFill: #f9fafb;
+    --lines: #785D41; /* texto oscuro */
   }
 
   /* Tema claro */
@@ -19,8 +19,8 @@
     --fg: #111827; /* texto oscuro */
     --muted: #4b5563; /* gris medio para secundarios */
     --accent: #e3c36f; /* marrón/anaranjado */
-    --pilar: #FFFFFF;
-    --black: #111827; /* texto oscuro */
+    --pillarFill: #FFFFFF;
+    --lines: #111827; /* texto oscuro */
   }
 
   /* Tema oscuro */
@@ -29,7 +29,7 @@
     --fg: #e5e7eb; /* texto claro */
     --muted: #9ca3af; /* gris medio */
     --accent: #9e8b44; /* naranja vivo */
-    --pilar: #9ca3af;
-    --black: #111827; /* texto oscuro */
+    --pillarFill: #9ca3af;
+    --lines: #9ca3af; /* texto oscuro */
   }
 }
