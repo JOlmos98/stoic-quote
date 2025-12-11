@@ -1,9 +1,59 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import woman from '$lib/assets/Woman2.svg';
-  import asklepios from '$lib/assets/Asklepios.svg';
   import Column from '$lib/components/SVGs/Column.svelte';
-  import Asklepios from '$lib/components/SVGs/Asklepios.svelte';
+
+  type Theme = 'stoic' | 'light' | 'dark';
+  type PhilosopherKey = 'seneca' | 'marco_aurelio' | 'zenon';
+
+  // --- Tablas de imágenes por tema ---
+  const Marco_Aurelio: Record<Theme, string> = { dark: 'https://i.imgur.com/kRgivLP.png', light: 'https://i.imgur.com/MnnwHb4.png', stoic: 'https://i.imgur.com/4hoP0je.png' };
+
+  const Seneca: Record<Theme, string> = { dark: 'https://i.imgur.com/kErYSv2.png', light: 'https://i.imgur.com/bMsvk8g.png', stoic: 'https://i.imgur.com/X3h6jCZ.png' };
+
+  const Zenon: Record<Theme, string> = { dark: 'https://i.imgur.com/aYk2h1A.png', light: 'https://i.imgur.com/7dMBWrp.png', stoic: 'https://i.imgur.com/YAJCZff.png' };
+
+  const PHILOSOPHERS: Record<PhilosopherKey, Record<Theme, string>> = { seneca: Seneca, marco_aurelio: Marco_Aurelio, zenon: Zenon };
+
+  // --- Estado reactivo ---
+  let currentTheme: Theme = 'stoic';
+  let currentPhilosopher: PhilosopherKey = 'marco_aurelio';
+  let imageSrc: string;
+
+  const updateThemeFromDom = () => {
+    if (typeof document === 'undefined') return;
+    const themeFromDom = document.documentElement.dataset.theme as Theme | undefined;
+    currentTheme = themeFromDom ?? 'stoic';
+  };
+
+  const pickRandomPhilosopher = () => {
+    const randomNum = Math.random();
+    if (randomNum < 0.3) currentPhilosopher = 'seneca';
+    else if (randomNum < 0.6) currentPhilosopher = 'marco_aurelio';
+    else currentPhilosopher = 'zenon';
+  };
+
+  // onMount para tema + filósofo aleatorio
+  onMount(() => {
+    updateThemeFromDom();
+    pickRandomPhilosopher();
+
+    // Observa cambios en data-theme (cuando cambies de tema)
+    const observer = new MutationObserver(() => {
+      updateThemeFromDom();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    return () => observer.disconnect();
+  });
+
+  const PHILOSOPHER_LABELS: Record<PhilosopherKey, string> = { seneca: 'Séneca, uno de los máximos exponentes del estoicismo.', marco_aurelio: 'Marco Aurelio, el emperador estoico.', zenon: 'Zenón de Citio, padre del estoicismo.' };
+
+  // Imagen final = filósofo aleatorio + tema actual
+  $: imageSrc = PHILOSOPHERS[currentPhilosopher][currentTheme];
+
+  // Texto bajo la imagen según el filósofo actual
+  $: captionText = PHILOSOPHER_LABELS[currentPhilosopher];
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -37,7 +87,7 @@
     introScrollTl.to(
       '.section-1 p',
       {
-        y: -150, // desplaza el texto hacia arriba
+        y: -300, // desplaza el texto hacia arriba
         opacity: 0, // lo hacemos desaparecer poco a poco
         ease: 'none'
       },
@@ -69,6 +119,10 @@
     // 3) Secciones siguientes con ScrollTrigger (mantengo tu lógica)
     gsap.from('.section-2 p', { scrollTrigger: { trigger: '.section-2', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
     // Figuras de la sección 2 (Asklepios y Woman) aparecen suavemente al entrar la sección
+
+    // Imagen de la sección 2
+    gsap.from('.section-2-image', { scrollTrigger: { trigger: '.section-2', start: 'top 80%' }, opacity: 0, y: 40, scale: 0.5, duration: 1.4, ease: 'power2.out' });
+
     gsap.from('.asklepios-figure', {
       scrollTrigger: {
         trigger: '.section-2', // cuando la sección 2 entra en pantalla
@@ -138,30 +192,28 @@
   </div>
 
   <!-- <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]"> -->
-  <div class="section-2 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <!-- <img
-      src={asklepios}
-      alt="Asklepios"
-      class="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
-      aria-hidden="true"
-    /> -->
-<Asklepios
-  className="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
-/>
-    <!-- <Asklepios className="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20" /> -->
+  <div class="section-2 relative flex min-h-screen flex-col items-center justify-center gap-10 font-semibold text-[var(--fg)] md:flex-row md:gap-16">
+    <!-- Imagen + caption izquierda -->
+    <div class="group section-2-image flex flex-col items-center gap-5">
+      <img
+        src={imageSrc}
+        alt="Philosopher"
+        class="pointer-events-none h-64 w-auto transition-transform duration-800 ease-out group-hover:scale-105 md:h-130"
+        aria-hidden="true"
+      />
+      <p class="text-md text-[var(--bg)] transition-colors duration-800 ease-out group-hover:scale-105 group-hover:text-[var(--fg)] md:text-base">
+        {captionText}
+      </p>
+    </div>
 
-    <img
-      src={woman}
-      alt="Woman"
-      class="woman-figure pointer-events-none absolute top-1/2 -left-50 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
-      aria-hidden="true"
-    />
-
-    <p class="my-4 w-full text-center text-2xl md:w-2/3">2026/01/01</p>
-    <p class="my-4 w-full text-left text-xl md:w-2/3">
-      Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una idea
-      con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
-    </p>
+    <!-- Texto derecha -->
+    <div class="section-2-text flex max-w-xl flex-col text-left">
+      <p class="my-4 w-full text-left text-2xl">2026/01/01</p>
+      <p class="my-4 w-full text-left text-xl">
+        Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una
+        idea con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
+      </p>
+    </div>
   </div>
 
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
