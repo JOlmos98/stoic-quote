@@ -17,7 +17,7 @@
   :root[data-theme='light'] {
     --bg: #f9fafb; /* gris muy claro */
     --fg: #111827; /* texto oscuro */
-    --muted: #36394A; /* gris medio para secundarios */
+    --muted: #9C9C9C; /* gris medio para secundarios */
     /* --accent: #e3c36f; marrón/anaranjado */
     --pillarFill: #FFFFFF;
     --lines: #785D41; /* texto oscuro */

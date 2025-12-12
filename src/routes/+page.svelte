@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import Column from '$lib/components/SVGs/Column.svelte';
   import ScrollToTopButton from '$lib/components/ScrollToTopButton.svelte';
+  import { goto } from '$app/navigation';
 
   type Theme = 'stoic' | 'light' | 'dark';
   type PhilosopherKey = 'seneca' | 'marco_aurelio' | 'zenon';
@@ -21,6 +22,33 @@
   let imageSrc: string;
   let iconImage: string;
   let laurelImage: string;
+
+  // Define la URL de destino
+  const urlFAQs = 'https://www.ejemplo.com/j-olmos';
+  const urlDoc = 'https://www.ejemplo.com/j-olmos';
+  const urlTech = 'https://www.ejemplo.com/j-olmos';
+  const urlDonar = 'https://www.ejemplo.com/j-olmos';
+  const urlGithub = 'https://github.com/JOlmos98/stoic-quote';
+  const urlJOlmos = 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en';
+
+  function goToFAQs() {
+    goto(urlFAQs);
+  }
+  function goToDoc() {
+    goto(urlDoc);
+  }
+  function goToTech() {
+    goto(urlTech);
+  }
+  function goToDonar() {
+    goto(urlDonar);
+  }
+  function goToGithub() {
+    goto(urlGithub);
+  }
+  function goToJOlmos() {
+    goto(urlJOlmos);
+  }
 
   const updateThemeFromDom = () => {
     if (typeof document === 'undefined') return;
@@ -150,26 +178,58 @@
     // - Empieza muy grande y muy abajo (no se ve al llegar a la sección)
     // - Conforme haces scroll hacia abajo va subiendo
     // - Solo cuando llegas al fondo de la sección 3 queda perfectamente centrada
+    // gsap.fromTo(
+    //   '.laurel-icon',
+    //   {
+    //     opacity: 0,
+    //     scale: 1.8, // más grande al inicio
+    //     y: 500 // muy abajo, fuera de la vista
+    //   },
+    //   {
+    //     scrollTrigger: {
+    //       trigger: '.section-3',
+    //       start: 'top bottom', // cuando la parte de arriba de section-3 toca la parte de abajo del viewport
+    //       end: 'bottom bottom', // cuando has bajado del todo la sección 3
+    //       scrub: true // movimiento ligado al scroll, como las columnas
+    //     },
+    //     opacity: 1,
+    //     scale: 1.2, // queda grande, pero un poco más contenida en su posición final
+    //     y: 0, // centrada justo detrás del icono
+    //     ease: 'none'
+    //   }
+    // );
+
+    // Corona de laurel sección 3 (animación independiente)
     gsap.fromTo(
       '.laurel-icon',
-      {
-        opacity: 0,
-        scale: 1.8, // más grande al inicio
-        y: 500 // muy abajo, fuera de la vista
-      },
+      { opacity: 0, scale: 2, y: 700 },
       {
         scrollTrigger: {
           trigger: '.section-3',
           start: 'top bottom', // cuando la parte de arriba de section-3 toca la parte de abajo del viewport
-          end: 'bottom bottom', // cuando has bajado del todo la sección 3
-          scrub: true // movimiento ligado al scroll, como las columnas
+          end: 'bottom bottom', // hasta que llegas al final de la sección 3
+          scrub: true // ligado al scroll, como las columnas
         },
         opacity: 1,
-        scale: 1.2, // queda grande, pero un poco más contenida en su posición final
-        y: 0, // centrada justo detrás del icono
+        scale: 1.2,
+        y: 0,
         ease: 'none'
       }
     );
+
+    // Textos del footer (todos a la vez, fade-in al final del scroll)
+    gsap.from('.footer-link', {
+      scrollTrigger: {
+        trigger: '.section-3',
+        start: 'bottom bottom', // cuando el final de section-3 llega al final del viewport
+        toggleActions: 'play none none reverse'
+        // sin scrub -> animación normal, no ligada al avance del scroll
+      },
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power2.out'
+      // SIN stagger: todos aparecen a la vez
+    });
   });
 </script>
 
@@ -225,71 +285,90 @@
 
       <!-- FAQs: centro pero un poco arriba a la izquierda -->
       <!-- FAQs -->
-<button
-  type="button"
-  class="absolute top-[25%] left-[18%] z-20 cursor-pointer
-         text-3xl md:text-4xl tracking-wide
-         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
-  on:click={() => console.log('Click en FAQs')}
->
-  FAQs
-</button>
+      <button
+        type="button"
+        class="footer-link absolute top-[25%] left-[18%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en FAQs')}
+      >
+        FAQs
+      </button>
 
-<!-- Doc: centro un poco a la izquierda -->
-<button
-  type="button"
-  class="absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl md:text-4xl tracking-wide
-         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
-  on:click={() => console.log('Click en Doc')}
->
-  Doc
-</button>
+      <!-- Doc -->
+      <button
+        type="button"
+        class="footer-link absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Doc')}
+      >
+        Doc
+      </button>
 
-<!-- Tech: centro un poco abajo a la izquierda -->
-<button
-  type="button"
-  class="absolute top-[61%] left-[20%] z-20 cursor-pointer
-         text-3xl md:text-4xl tracking-wide
-         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
-  on:click={() => console.log('Click en Tech')}
->
-  Tech
-</button>
+      <!-- Tech -->
+      <button
+        type="button"
+        class="footer-link absolute top-[61%] left-[20%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Tech')}
+      >
+        Tech
+      </button>
 
-<!-- Donar: misma altura que FAQs pero a la derecha -->
-<button
-  type="button"
-  class="absolute top-[25%] right-[17%] z-20 cursor-pointer
-         text-3xl md:text-4xl tracking-wide
-         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
-  on:click={() => console.log('Click en Donar')}
->
-  Donar
-</button>
+      <!-- Donar -->
+      <button
+        type="button"
+        class="footer-link absolute top-[25%] right-[17%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Donar')}
+      >
+        Donar
+      </button>
 
-<!-- GitHub: misma altura que Doc pero a la derecha -->
-<button
-  type="button"
-  class="absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl md:text-4xl tracking-wide
-         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
-  on:click={() => console.log('Click en GitHub')}
->
-  GitHub
-</button>
+      <!-- GitHub -->
+      <!-- <button
+        type="button"
+        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={goToGithub}
+      >
+        GitHub
+      </button> -->
+      <a
+        href={urlGithub}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+      >
+        GitHub
+      </a>
 
-<!-- J. Olmos: misma altura que Tech pero a la derecha -->
-<button
-  type="button"
-  class="absolute top-[61%] right-[15%] z-20 cursor-pointer
-         text-3xl md:text-4xl tracking-wide
-         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
-  on:click={() => console.log('Click en J. Olmos')}
->
-  J. Olmos
-</button>
-
+      <!-- J. Olmos -->
+      <!-- <button
+        type="button"
+        class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={goToJOlmos}
+      >
+        J. Olmos
+      </button> -->
+      <a
+        href={urlJOlmos}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+      >
+        J. Olmos
+      </a>
     </div>
   </div>
   <ScrollToTopButton />
