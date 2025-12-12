@@ -5,7 +5,7 @@
 @layer base {
   /* Estoico (default) */
   :root[data-theme='stoic'] {
-    --bg: #FCF1DB; /* gris oscuro neutro, rollo estoico e3ce8d*/
+    --bg: #FCF1DB;
     --fg: #785D41; /* texto claro */
     --muted: #9ca3af; /* texto secundario */
     --accent: #e3c36f; /* dorado/ambar */

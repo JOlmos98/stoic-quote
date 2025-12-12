@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Column from '$lib/components/SVGs/Column.svelte';
+  import ScrollToTopButton from '$lib/components/ScrollToTopButton.svelte';
 
   type Theme = 'stoic' | 'light' | 'dark';
   type PhilosopherKey = 'seneca' | 'marco_aurelio' | 'zenon';
@@ -14,10 +15,16 @@
 
   const PHILOSOPHERS: Record<PhilosopherKey, Record<Theme, string>> = { seneca: Seneca, marco_aurelio: Marco_Aurelio, zenon: Zenon };
 
+  const ICONS: Record<Theme, string> = { light: 'https://i.imgur.com/euBs7nd.png', dark: 'https://i.imgur.com/5KcCa05.png', stoic: 'https://i.imgur.com/IszGtyr.png' };
+
+  const LAURELS: Record<Theme, string> = { light: 'https://i.imgur.com/0BqUIS6.png', dark: 'https://i.imgur.com/STZpD5E.png', stoic: 'https://i.imgur.com/ku8YVNo.png' };
+
   // --- Estado reactivo ---
   let currentTheme: Theme = 'stoic';
   let currentPhilosopher: PhilosopherKey = 'marco_aurelio';
   let imageSrc: string;
+  let iconImage: string;
+  let laurelImage: string;
 
   const updateThemeFromDom = () => {
     if (typeof document === 'undefined') return;
@@ -54,6 +61,10 @@
 
   // Texto bajo la imagen según el filósofo actual
   $: captionText = PHILOSOPHER_LABELS[currentPhilosopher];
+
+  $: iconImage = ICONS[currentTheme];
+
+  $: laurelImage = LAURELS[currentTheme];
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -123,55 +134,47 @@
     // Imagen de la sección 2
     gsap.from('.section-2-image', { scrollTrigger: { trigger: '.section-2', start: 'top 80%' }, opacity: 0, y: 40, scale: 0.5, duration: 1.4, ease: 'power2.out' });
 
-    gsap.from('.asklepios-figure', {
-      scrollTrigger: {
-        trigger: '.section-2', // cuando la sección 2 entra en pantalla
-        start: 'top 80%' // empieza cuando el top de section-2 llega al 80% del viewport
-      },
-      opacity: 0, // empieza transparente
-      y: 40, // un poco más abajo
-      scale: 0.5, // ligeramente más pequeña
-      duration: 1.4, // animación algo lenta
-      ease: 'power2.out' // easing suave
-    });
-
-    gsap.from('.woman-figure', {
-      scrollTrigger: {
-        trigger: '.section-2', // mismo trigger
-        start: 'top 80%'
-      },
-      opacity: 0,
-      y: 40,
-      scale: 0.5,
-      duration: 1.4,
-      ease: 'power2.out'
-    });
-
     gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
 
-    gsap.from('.apollo-figure', {
+    // Icono de la sección 3: aparece y crece al hacer scroll
+    gsap.from('.footer-icon', {
       scrollTrigger: {
-        trigger: '.section-3', // cuando entra la sección 3
-        start: 'top 80%' // empieza cuando el top de section-3 llega al 80% del viewport
+        trigger: '.section-3',
+        start: 'top 50%', // cuando la sección 3 empieza a entrar
+        end: 'center center', // hasta mitad de viewport
+        scrub: true // ligado al scroll (crece progresivamente)
       },
       opacity: 0,
-      y: 40,
       scale: 0.5,
-      duration: 1.4,
+      y: 60,
       ease: 'power2.out'
     });
 
-    gsap.from('.poseidon-figure', {
-      scrollTrigger: {
-        trigger: '.section-3', // a
-        start: 'top 80%'
+    // Corona de laurel sección 3:
+    // - Empieza muy grande y muy abajo (no se ve al llegar a la sección)
+    // - Conforme haces scroll hacia abajo va subiendo
+    // - Solo cuando llegas al fondo de la sección 3 queda perfectamente centrada
+    gsap.fromTo(
+      '.laurel-icon',
+      {
+        opacity: 0,
+        scale: 1.8,  // más grande al inicio
+        y: 500       // muy abajo, fuera de la vista
       },
-      opacity: 0,
-      y: 40,
-      scale: 0.5,
-      duration: 1.4,
-      ease: 'power2.out'
-    });
+      {
+        scrollTrigger: {
+          trigger: '.section-3',
+          start: 'top bottom',   // cuando la parte de arriba de section-3 toca la parte de abajo del viewport
+          end: 'bottom bottom',  // cuando has bajado del todo la sección 3
+          scrub: true            // movimiento ligado al scroll, como las columnas
+        },
+        opacity: 1,
+        scale: 1.2,  // queda grande, pero un poco más contenida en su posición final
+        y: 0,        // centrada justo detrás del icono
+        ease: 'none'
+      }
+    );
+
   });
 </script>
 
@@ -217,7 +220,23 @@
   </div>
 
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <p class="my-4 w-full text-center text-2xl md:w-2/3">Aquí irá el footer y toda la info relacionada.</p>
-    <p class="my-4 w-full text-center text-xl md:w-2/3">Texto ejemplo</p>
-  </div>
+  <!-- Corona de laurel, tamaño correcto -->
+  <img
+    src={laurelImage}
+    alt="laurel"
+    class="laurel-icon pointer-events-none h-180"
+    aria-hidden="true"
+  />
+
+  <!-- Icono, solapado encima de la corona -->
+  <!-- <img
+    src={iconImage}
+    alt="web_icon"
+    class="footer-icon pointer-events-none -mt-350 h-64 w-auto z-10"
+    aria-hidden="true"
+  /> -->
+</div>
+  <ScrollToTopButton />
+
+
 </div>
