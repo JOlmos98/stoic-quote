@@ -174,31 +174,6 @@
       ease: 'power2.out'
     });
 
-    // Corona de laurel sección 3:
-    // - Empieza muy grande y muy abajo (no se ve al llegar a la sección)
-    // - Conforme haces scroll hacia abajo va subiendo
-    // - Solo cuando llegas al fondo de la sección 3 queda perfectamente centrada
-    // gsap.fromTo(
-    //   '.laurel-icon',
-    //   {
-    //     opacity: 0,
-    //     scale: 1.8, // más grande al inicio
-    //     y: 500 // muy abajo, fuera de la vista
-    //   },
-    //   {
-    //     scrollTrigger: {
-    //       trigger: '.section-3',
-    //       start: 'top bottom', // cuando la parte de arriba de section-3 toca la parte de abajo del viewport
-    //       end: 'bottom bottom', // cuando has bajado del todo la sección 3
-    //       scrub: true // movimiento ligado al scroll, como las columnas
-    //     },
-    //     opacity: 1,
-    //     scale: 1.2, // queda grande, pero un poco más contenida en su posición final
-    //     y: 0, // centrada justo detrás del icono
-    //     ease: 'none'
-    //   }
-    // );
-
     // Corona de laurel sección 3 (animación independiente)
     gsap.fromTo(
       '.laurel-icon',
