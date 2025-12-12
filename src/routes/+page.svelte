@@ -8,15 +8,11 @@
 
   // --- Tablas de imágenes por tema ---
   const Marco_Aurelio: Record<Theme, string> = { dark: 'https://i.imgur.com/kRgivLP.png', light: 'https://i.imgur.com/MnnwHb4.png', stoic: 'https://i.imgur.com/4hoP0je.png' };
-
   const Seneca: Record<Theme, string> = { dark: 'https://i.imgur.com/kErYSv2.png', light: 'https://i.imgur.com/bMsvk8g.png', stoic: 'https://i.imgur.com/X3h6jCZ.png' };
-
   const Zenon: Record<Theme, string> = { dark: 'https://i.imgur.com/aYk2h1A.png', light: 'https://i.imgur.com/7dMBWrp.png', stoic: 'https://i.imgur.com/YAJCZff.png' };
 
   const PHILOSOPHERS: Record<PhilosopherKey, Record<Theme, string>> = { seneca: Seneca, marco_aurelio: Marco_Aurelio, zenon: Zenon };
-
   const ICONS: Record<Theme, string> = { light: 'https://i.imgur.com/euBs7nd.png', dark: 'https://i.imgur.com/5KcCa05.png', stoic: 'https://i.imgur.com/IszGtyr.png' };
-
   const LAURELS: Record<Theme, string> = { light: 'https://i.imgur.com/0BqUIS6.png', dark: 'https://i.imgur.com/STZpD5E.png', stoic: 'https://i.imgur.com/ku8YVNo.png' };
 
   // --- Estado reactivo ---
@@ -158,23 +154,22 @@
       '.laurel-icon',
       {
         opacity: 0,
-        scale: 1.8,  // más grande al inicio
-        y: 500       // muy abajo, fuera de la vista
+        scale: 1.8, // más grande al inicio
+        y: 500 // muy abajo, fuera de la vista
       },
       {
         scrollTrigger: {
           trigger: '.section-3',
-          start: 'top bottom',   // cuando la parte de arriba de section-3 toca la parte de abajo del viewport
-          end: 'bottom bottom',  // cuando has bajado del todo la sección 3
-          scrub: true            // movimiento ligado al scroll, como las columnas
+          start: 'top bottom', // cuando la parte de arriba de section-3 toca la parte de abajo del viewport
+          end: 'bottom bottom', // cuando has bajado del todo la sección 3
+          scrub: true // movimiento ligado al scroll, como las columnas
         },
         opacity: 1,
-        scale: 1.2,  // queda grande, pero un poco más contenida en su posición final
-        y: 0,        // centrada justo detrás del icono
+        scale: 1.2, // queda grande, pero un poco más contenida en su posición final
+        y: 0, // centrada justo detrás del icono
         ease: 'none'
       }
     );
-
   });
 </script>
 
@@ -218,25 +213,96 @@
       </p>
     </div>
   </div>
-
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-  <!-- Corona de laurel, tamaño correcto -->
-  <img
-    src={laurelImage}
-    alt="laurel"
-    class="laurel-icon pointer-events-none h-180"
-    aria-hidden="true"
-  />
+    <div class="relative flex items-center justify-center">
+      <!-- Corona de laurel -->
+      <img
+        src={laurelImage}
+        alt="laurel"
+        class="laurel-icon pointer-events-none z-10 h-180"
+        aria-hidden="true"
+      />
 
-  <!-- Icono, solapado encima de la corona -->
-  <!-- <img
-    src={iconImage}
-    alt="web_icon"
-    class="footer-icon pointer-events-none -mt-350 h-64 w-auto z-10"
-    aria-hidden="true"
-  /> -->
-</div>
+      <!-- FAQs: centro pero un poco arriba a la izquierda -->
+      <button
+        type="button"
+        class="absolute top-[25%] left-[18%] z-20 cursor-pointer text-3xl
+         tracking-wide
+         text-[var(--bg)] transition-[text-shadow]
+         duration-800
+         [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en FAQs')}
+      >
+        FAQs
+      </button>
+
+      <!-- Doc: centro un poco a la izquierda -->
+      <button
+        type="button"
+        class="absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl
+         tracking-wide text-[var(--bg)]
+         transition-[text-shadow]
+         duration-800 [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Doc')}
+      >
+        Doc
+      </button>
+
+      <!-- Tech: centro un poco abajo a la izquierda -->
+      <button
+        type="button"
+        class="absolute top-[61%] left-[20%] z-20 cursor-pointer text-3xl
+         tracking-wide
+         text-[var(--bg)] transition-[text-shadow]
+         duration-800
+         [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Tech')}
+      >
+        Tech
+      </button>
+
+      <!-- Donar: misma altura que FAQs pero a la derecha -->
+      <button
+        type="button"
+        class="absolute top-[25%] right-[17%] z-20 cursor-pointer text-3xl
+         tracking-wide
+         text-[var(--bg)] transition-[text-shadow]
+         duration-800
+         [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Donar')}
+      >
+        Donar
+      </button>
+
+      <!-- GitHub: misma altura que Doc pero a la derecha -->
+      <button
+        type="button"
+        class="absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl
+         tracking-wide text-[var(--bg)]
+         transition-[text-shadow]
+         duration-800
+                      [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en GitHub')}
+      >
+        GitHub
+      </button>
+
+      <!-- J. Olmos: misma altura que Tech pero a la derecha -->
+      <button
+        type="button"
+        class="absolute top-[61%] right-[15%] z-20 cursor-pointer text-3xl
+         tracking-wide
+         text-[var(--bg)] transition-[text-shadow]
+         duration-800
+         [text-shadow:0_0_0_rgba(0,0,0,0)]
+         hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en J. Olmos')}
+      >
+        J. Olmos
+      </button>
+    </div>
+  </div>
   <ScrollToTopButton />
-
-
 </div>
