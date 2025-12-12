@@ -224,84 +224,72 @@
       />
 
       <!-- FAQs: centro pero un poco arriba a la izquierda -->
-      <button
-        type="button"
-        class="absolute top-[25%] left-[18%] z-20 cursor-pointer text-3xl
-         tracking-wide
-         text-[var(--bg)] transition-[text-shadow]
-         duration-800
-         [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en FAQs')}
-      >
-        FAQs
-      </button>
+      <!-- FAQs -->
+<button
+  type="button"
+  class="absolute top-[25%] left-[18%] z-20 cursor-pointer
+         text-3xl md:text-4xl tracking-wide
+         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
+  on:click={() => console.log('Click en FAQs')}
+>
+  FAQs
+</button>
 
-      <!-- Doc: centro un poco a la izquierda -->
-      <button
-        type="button"
-        class="absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl
-         tracking-wide text-[var(--bg)]
-         transition-[text-shadow]
-         duration-800 [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en Doc')}
-      >
-        Doc
-      </button>
+<!-- Doc: centro un poco a la izquierda -->
+<button
+  type="button"
+  class="absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl md:text-4xl tracking-wide
+         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
+  on:click={() => console.log('Click en Doc')}
+>
+  Doc
+</button>
 
-      <!-- Tech: centro un poco abajo a la izquierda -->
-      <button
-        type="button"
-        class="absolute top-[61%] left-[20%] z-20 cursor-pointer text-3xl
-         tracking-wide
-         text-[var(--bg)] transition-[text-shadow]
-         duration-800
-         [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en Tech')}
-      >
-        Tech
-      </button>
+<!-- Tech: centro un poco abajo a la izquierda -->
+<button
+  type="button"
+  class="absolute top-[61%] left-[20%] z-20 cursor-pointer
+         text-3xl md:text-4xl tracking-wide
+         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
+  on:click={() => console.log('Click en Tech')}
+>
+  Tech
+</button>
 
-      <!-- Donar: misma altura que FAQs pero a la derecha -->
-      <button
-        type="button"
-        class="absolute top-[25%] right-[17%] z-20 cursor-pointer text-3xl
-         tracking-wide
-         text-[var(--bg)] transition-[text-shadow]
-         duration-800
-         [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en Donar')}
-      >
-        Donar
-      </button>
+<!-- Donar: misma altura que FAQs pero a la derecha -->
+<button
+  type="button"
+  class="absolute top-[25%] right-[17%] z-20 cursor-pointer
+         text-3xl md:text-4xl tracking-wide
+         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
+  on:click={() => console.log('Click en Donar')}
+>
+  Donar
+</button>
 
-      <!-- GitHub: misma altura que Doc pero a la derecha -->
-      <button
-        type="button"
-        class="absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl
-         tracking-wide text-[var(--bg)]
-         transition-[text-shadow]
-         duration-800
-                      [text-shadow:0_0_0_rgba(0,0,0,0)] hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en GitHub')}
-      >
-        GitHub
-      </button>
+<!-- GitHub: misma altura que Doc pero a la derecha -->
+<button
+  type="button"
+  class="absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl md:text-4xl tracking-wide
+         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
+  on:click={() => console.log('Click en GitHub')}
+>
+  GitHub
+</button>
 
-      <!-- J. Olmos: misma altura que Tech pero a la derecha -->
-      <button
-        type="button"
-        class="absolute top-[61%] right-[15%] z-20 cursor-pointer text-3xl
-         tracking-wide
-         text-[var(--bg)] transition-[text-shadow]
-         duration-800
-         [text-shadow:0_0_0_rgba(0,0,0,0)]
-         hover:[text-shadow:0_0_18px_var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en J. Olmos')}
-      >
-        J. Olmos
-      </button>
+<!-- J. Olmos: misma altura que Tech pero a la derecha -->
+<button
+  type="button"
+  class="absolute top-[61%] right-[15%] z-20 cursor-pointer
+         text-3xl md:text-4xl tracking-wide
+         text-[var(--muted)] transition-colors duration-500 hover:text-[var(--bg)]"
+  on:click={() => console.log('Click en J. Olmos')}
+>
+  J. Olmos
+</button>
+
     </div>
   </div>
   <ScrollToTopButton />
