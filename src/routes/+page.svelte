@@ -35,7 +35,7 @@
 
   // Define la URL de destino
   function goToFAQs() {
-    goto(urlFAQs);
+    goto('/docs/faqs');
   }
   function goToDocs() {
     goto('/notes');
@@ -263,7 +263,7 @@
         class="footer-link absolute top-[25%] left-[18%] z-20 cursor-pointer
          text-3xl tracking-wide text-[var(--muted)]
          transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en FAQs')}
+        on:click={() => goToFAQs()}
       >
         FAQs
       </button>

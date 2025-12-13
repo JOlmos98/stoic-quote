@@ -1,16 +1,10 @@
-<script>
+---
+title: "Cómo pensar como un estoico en 2026"
+description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
+---
 
+# Docs
 
-</script>
+---
 
-# Documentación de StoicQuote
-
-Bienvenido a la sección de **Docs**.
-
-Aquí puedes escribir markdown normal:
-
-- Cómo usar la web
-- Filosofía del proyecto
-- Enlaces útiles
-
-## Ejemplo de bloque de código
+## X. aaa
