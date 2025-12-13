@@ -16,6 +16,12 @@
   const ICONS: Record<Theme, string> = { light: 'https://i.imgur.com/euBs7nd.png', dark: 'https://i.imgur.com/5KcCa05.png', stoic: 'https://i.imgur.com/IszGtyr.png' };
   const LAURELS: Record<Theme, string> = { light: 'https://i.imgur.com/0BqUIS6.png', dark: 'https://i.imgur.com/STZpD5E.png', stoic: 'https://i.imgur.com/ku8YVNo.png' };
 
+  const urlFAQs = 'https://www.ejemplo.com/j-olmos';
+  const urlTech = 'https://www.ejemplo.com/j-olmos';
+  const urlDonar = 'https://www.ejemplo.com/j-olmos';
+  const urlGithub = 'https://github.com/JOlmos98/stoic-quote';
+  const urlJOlmos = 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en';
+
   // --- Estado reactivo ---
   let currentTheme: Theme = 'stoic';
   let currentPhilosopher: PhilosopherKey = 'marco_aurelio';
@@ -23,31 +29,22 @@
   let iconImage: string;
   let laurelImage: string;
 
-  // Define la URL de destino
-  const urlFAQs = 'https://www.ejemplo.com/j-olmos';
-  const urlDoc = 'https://www.ejemplo.com/j-olmos';
-  const urlTech = 'https://www.ejemplo.com/j-olmos';
-  const urlDonar = 'https://www.ejemplo.com/j-olmos';
-  const urlGithub = 'https://github.com/JOlmos98/stoic-quote';
-  const urlJOlmos = 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en';
+  //* CREAR VARIABLES PARA LOS TEXTOS PARA MANEJAR POSTERIORMENTE CON PARAGLIDE
 
+  const references = 'Recuenco, J. G., & de Haro, G. (2022). El pequeño libro de la filosofía estoica. Alienta Editorial.';
+
+  // Define la URL de destino
   function goToFAQs() {
     goto(urlFAQs);
   }
-  function goToDoc() {
-    goto(urlDoc);
+  function goToDocs() {
+    goto('/notes');
   }
   function goToTech() {
     goto(urlTech);
   }
   function goToDonar() {
     goto(urlDonar);
-  }
-  function goToGithub() {
-    goto(urlGithub);
-  }
-  function goToJOlmos() {
-    goto(urlJOlmos);
   }
 
   const updateThemeFromDom = () => {
@@ -218,7 +215,7 @@
     <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
     <!-- Contenido textual (por encima de los pilares) -->
-    <div class="z-10 flex flex-col items-center px-4">
+    <div class="z-10 flex flex-col items-center px-4 transition-transform duration-900 hover:scale-120">
       <p class="my-4 w-full text-center text-2xl md:w-2/3">No pierdas el tiempo en discutir con los estúpidos y los charlatanes: la palabra la tienen todos, el buen juicio sólo unos pocos.</p>
       <p class="my-4 w-full text-center text-xl md:w-2/3">Catón el Joven</p>
     </div>
@@ -246,6 +243,8 @@
         Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una
         idea con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
       </p>
+      <p class="my-4 w-full text-left text-xl">Referencias de la cita:</p>
+      {references}
     </div>
   </div>
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
@@ -258,7 +257,6 @@
         aria-hidden="true"
       />
 
-      <!-- FAQs: centro pero un poco arriba a la izquierda -->
       <!-- FAQs -->
       <button
         type="button"
@@ -276,9 +274,9 @@
         class="footer-link absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
          text-3xl tracking-wide text-[var(--muted)]
          transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en Doc')}
+        on:click={() => goToDocs()}
       >
-        Doc
+        Docs
       </button>
 
       <!-- Tech -->
@@ -291,7 +289,7 @@
       >
         Tech
       </button>
-
+      <!-- Donation -->
       <button
         type="button"
         class="footer-link absolute top-[25%] right-[17%] z-20 cursor-pointer
@@ -301,7 +299,7 @@
       >
         Donar
       </button>
-
+      <!-- GitHub -->
       <a
         href={urlGithub}
         target="_blank"
@@ -312,7 +310,7 @@
       >
         GitHub
       </a>
-
+      <!-- J. Olmos -->
       <a
         href={urlJOlmos}
         target="_blank"

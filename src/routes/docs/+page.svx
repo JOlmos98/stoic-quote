@@ -1,20 +1,16 @@
----
-title: Svex up your markdown
-count: 25
-color: cadetblue
-list: [1, 2, 3, 4, "boo"]
----
-
 <script>
 
 
 </script>
 
+# Documentación de StoicQuote
 
-# { title }
+Bienvenido a la sección de **Docs**.
 
-## Good stuff in your markdown
+Aquí puedes escribir markdown normal:
 
-Markdown is pretty good but sometimes you just need more.
+- Cómo usar la web
+- Filosofía del proyecto
+- Enlaces útiles
 
-Sometimes you need a boinger like this:
+## Ejemplo de bloque de código

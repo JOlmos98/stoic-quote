@@ -1,3 +1,4 @@
+// svelte.config.js
 import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
@@ -5,15 +6,19 @@ import { preprocessMeltUI, sequence } from '@melt-ui/pp';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  // Consult https://svelte.dev/docs/kit/integrations
-  // for more information about preprocessors
-  preprocess: [
-    sequence([vitePreprocess(), mdsvex(), preprocessMeltUI()]),
-    mdsvex()
-  ],
+  extensions: ['.svelte', '.svx'], // .svelte y .svx son páginas válidas
 
-  kit: { adapter: adapter() },
-  extensions: ['.svelte', '.svx']
+  preprocess: sequence([
+    vitePreprocess(),
+    mdsvex({
+      extensions: ['.svx'] // opcional pero recomendable
+    }),
+    preprocessMeltUI()
+  ]),
+
+  kit: {
+    adapter: adapter()
+  }
 };
 
 export default config;
