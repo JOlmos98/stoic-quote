@@ -1,10 +1,94 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import column from '$lib/assets/column1.svg';
-  import woman from '$lib/assets/Woman2.svg';
-  import asklepios from '$lib/assets/Asklepios.svg';
-  import apollo from '$lib/assets/Apollo.svg';
-  import poseidon from '$lib/assets/Poseidon.svg';
+  import Column from '$lib/components/SVGs/Column.svelte';
+  import ScrollToTopButton from '$lib/components/ScrollToTopButton.svelte';
+  import { goto } from '$app/navigation';
+
+  type Theme = 'stoic' | 'light' | 'dark';
+  type PhilosopherKey = 'seneca' | 'marco_aurelio' | 'zenon';
+
+  // --- Tablas de imágenes por tema ---
+  const Marco_Aurelio: Record<Theme, string> = { dark: 'https://i.imgur.com/kRgivLP.png', light: 'https://i.imgur.com/MnnwHb4.png', stoic: 'https://i.imgur.com/4hoP0je.png' };
+  const Seneca: Record<Theme, string> = { dark: 'https://i.imgur.com/kErYSv2.png', light: 'https://i.imgur.com/bMsvk8g.png', stoic: 'https://i.imgur.com/X3h6jCZ.png' };
+  const Zenon: Record<Theme, string> = { dark: 'https://i.imgur.com/aYk2h1A.png', light: 'https://i.imgur.com/7dMBWrp.png', stoic: 'https://i.imgur.com/YAJCZff.png' };
+
+  const PHILOSOPHERS: Record<PhilosopherKey, Record<Theme, string>> = { seneca: Seneca, marco_aurelio: Marco_Aurelio, zenon: Zenon };
+  const ICONS: Record<Theme, string> = { light: 'https://i.imgur.com/euBs7nd.png', dark: 'https://i.imgur.com/5KcCa05.png', stoic: 'https://i.imgur.com/IszGtyr.png' };
+  const LAURELS: Record<Theme, string> = { light: 'https://i.imgur.com/0BqUIS6.png', dark: 'https://i.imgur.com/STZpD5E.png', stoic: 'https://i.imgur.com/ku8YVNo.png' };
+
+  // --- Estado reactivo ---
+  let currentTheme: Theme = 'stoic';
+  let currentPhilosopher: PhilosopherKey = 'marco_aurelio';
+  let imageSrc: string;
+  let iconImage: string;
+  let laurelImage: string;
+
+  // Define la URL de destino
+  const urlFAQs = 'https://www.ejemplo.com/j-olmos';
+  const urlDoc = 'https://www.ejemplo.com/j-olmos';
+  const urlTech = 'https://www.ejemplo.com/j-olmos';
+  const urlDonar = 'https://www.ejemplo.com/j-olmos';
+  const urlGithub = 'https://github.com/JOlmos98/stoic-quote';
+  const urlJOlmos = 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en';
+
+  function goToFAQs() {
+    goto(urlFAQs);
+  }
+  function goToDoc() {
+    goto(urlDoc);
+  }
+  function goToTech() {
+    goto(urlTech);
+  }
+  function goToDonar() {
+    goto(urlDonar);
+  }
+  function goToGithub() {
+    goto(urlGithub);
+  }
+  function goToJOlmos() {
+    goto(urlJOlmos);
+  }
+
+  const updateThemeFromDom = () => {
+    if (typeof document === 'undefined') return;
+    const themeFromDom = document.documentElement.dataset.theme as Theme | undefined;
+    currentTheme = themeFromDom ?? 'stoic';
+  };
+
+  const pickRandomPhilosopher = () => {
+    const randomNum = Math.random();
+    if (randomNum < 0.3) currentPhilosopher = 'seneca';
+    else if (randomNum < 0.6) currentPhilosopher = 'marco_aurelio';
+    else currentPhilosopher = 'zenon';
+  };
+
+  // onMount para tema + filósofo aleatorio
+  onMount(() => {
+    updateThemeFromDom();
+    pickRandomPhilosopher();
+
+    // Observa cambios en data-theme (cuando cambies de tema)
+    const observer = new MutationObserver(() => {
+      updateThemeFromDom();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    return () => observer.disconnect();
+  });
+
+  const PHILOSOPHER_LABELS: Record<PhilosopherKey, string> = { seneca: 'Séneca, uno de los máximos exponentes del estoicismo.', marco_aurelio: 'Marco Aurelio, el emperador estoico.', zenon: 'Zenón de Citio, padre del estoicismo.' };
+
+  // Imagen final = filósofo aleatorio + tema actual
+  $: imageSrc = PHILOSOPHERS[currentPhilosopher][currentTheme];
+
+  // Texto bajo la imagen según el filósofo actual
+  $: captionText = PHILOSOPHER_LABELS[currentPhilosopher];
+
+  $: iconImage = ICONS[currentTheme];
+
+  $: laurelImage = LAURELS[currentTheme];
 
   onMount(async () => {
     // Import dinámico (cliente-only)
@@ -14,17 +98,6 @@
     const gsap = gsapModule.default;
     const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
-
-    // Flote suave en eje Y para personajes
-    // const floatCharacters = (targets: string) => {
-    //   gsap.to(targets, {
-    //     y: 6,                   // se mueve solo 6px hacia abajo y arriba
-    //     duration: 6,            // movimiento muy lento
-    //     ease: 'sine.inOut',     // movimiento suave tipo ola
-    //     yoyo: true,             // vuelve hacia atrás
-    //     repeat: -1              // infinito
-    //   });
-    // };
 
     // 1) Textos sección 1 (desde "lejos")
     gsap.from('.section-1 p', { opacity: 0, y: 80, scale: 0.12, duration: 2.5, ease: 'power3.out', stagger: 0.18, delay: 0.45 });
@@ -49,7 +122,7 @@
     introScrollTl.to(
       '.section-1 p',
       {
-        y: -150, // desplaza el texto hacia arriba
+        y: -300, // desplaza el texto hacia arriba
         opacity: 0, // lo hacemos desaparecer poco a poco
         ease: 'none'
       },
@@ -81,82 +154,68 @@
     // 3) Secciones siguientes con ScrollTrigger (mantengo tu lógica)
     gsap.from('.section-2 p', { scrollTrigger: { trigger: '.section-2', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
     // Figuras de la sección 2 (Asklepios y Woman) aparecen suavemente al entrar la sección
-    gsap.from('.asklepios-figure', {
-      scrollTrigger: {
-        trigger: '.section-2', // cuando la sección 2 entra en pantalla
-        start: 'top 80%' // empieza cuando el top de section-2 llega al 80% del viewport
-      },
-      opacity: 0, // empieza transparente
-      y: 40, // un poco más abajo
-      scale: 0.8, // ligeramente más pequeña
-      duration: 1.4, // animación algo lenta
-      ease: 'power2.out' // easing suave
-    });
 
-    gsap.from('.woman-figure', {
-      scrollTrigger: {
-        trigger: '.section-2', // mismo trigger
-        start: 'top 80%'
-      },
-      opacity: 0,
-      y: 40,
-      scale: 0.8,
-      duration: 1.4,
-      ease: 'power2.out'
-    });
+    // Imagen de la sección 2
+    gsap.from('.section-2-image', { scrollTrigger: { trigger: '.section-2', start: 'top 80%' }, opacity: 0, y: 40, scale: 0.5, duration: 1.4, ease: 'power2.out' });
 
     gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
 
-    gsap.from('.apollo-figure', {
+    // Icono de la sección 3: aparece y crece al hacer scroll
+    gsap.from('.footer-icon', {
       scrollTrigger: {
-        trigger: '.section-3', // cuando entra la sección 3
-        start: 'top 80%' // empieza cuando el top de section-3 llega al 80% del viewport
+        trigger: '.section-3',
+        start: 'top 50%', // cuando la sección 3 empieza a entrar
+        end: 'center center', // hasta mitad de viewport
+        scrub: true // ligado al scroll (crece progresivamente)
       },
       opacity: 0,
-      y: 40,
-      scale: 0.8,
-      duration: 1.4,
+      scale: 0.5,
+      y: 60,
       ease: 'power2.out'
     });
 
-    gsap.from('.poseidon-figure', {
+    // Corona de laurel sección 3 (animación independiente)
+    gsap.fromTo(
+      '.laurel-icon',
+      { opacity: 0, scale: 2, y: 700 },
+      {
+        scrollTrigger: {
+          trigger: '.section-3',
+          start: 'top bottom', // cuando la parte de arriba de section-3 toca la parte de abajo del viewport
+          end: 'bottom bottom', // hasta que llegas al final de la sección 3
+          scrub: true // ligado al scroll, como las columnas
+        },
+        opacity: 1,
+        scale: 1.2,
+        y: 0,
+        ease: 'none'
+      }
+    );
+
+    // Textos del footer (todos a la vez, fade-in al final del scroll)
+    gsap.from('.footer-link', {
       scrollTrigger: {
-        trigger: '.section-3', // a
-        start: 'top 80%'
+        trigger: '.section-3',
+        start: 'bottom bottom', // cuando el final de section-3 llega al final del viewport
+        toggleActions: 'play none none reverse'
+        // sin scrub -> animación normal, no ligada al avance del scroll
       },
       opacity: 0,
-      y: 40,
-      scale: 0.8,
-      duration: 1.4,
+      duration: 1.2,
       ease: 'power2.out'
+      // SIN stagger: todos aparecen a la vez
     });
-
-    // Activar flote en todos los personajes
-    // floatCharacters('.asklepios-figure');
-    // floatCharacters('.woman-figure');
-    // floatCharacters('.apollo-figure');
-    // floatCharacters('.poseidon-figure');
   });
 </script>
 
 <!-- Markup: los pilares están colocados con Tailwind en su posición final bg-[var(--bg)] text-[var(--fg)] -->
 <div class="flex min-h-screen flex-col items-center justify-center bg-[var(--bg)] p-8">
   <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <!-- Pilar izquierdo: colocado en left-1/4 (posición final definida por Tailwind) -->
-    <img
-      src={column}
-      alt="Columna izquierda"
-      class="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2"
-      aria-hidden="true"
-    />
+    <!-- Pilar izquierdo -->
+    <Column className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
-    <!-- Pilar derecho: colocado en right-1/4 (posición final definida por Tailwind) -->
-    <img
-      src={column}
-      alt="Columna derecha"
-      class="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2"
-      aria-hidden="true"
-    />
+    <!-- Pilar derecho -->
+    <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
     <!-- Contenido textual (por encima de los pilares) -->
     <div class="z-10 flex flex-col items-center px-4">
@@ -166,48 +225,126 @@
   </div>
 
   <!-- <div class="section-2 flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]"> -->
-  <div class="section-2 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <img
-      src={asklepios}
-      alt="Asklepios"
-      class="asklepios-figure pointer-events-none absolute top-1/2 -right-70 z-0 h-225 w-auto -translate-y-1/2 -rotate-20"
-      aria-hidden="true"
-    />
+  <div class="section-2 relative flex min-h-screen flex-col items-center justify-center gap-10 font-semibold text-[var(--fg)] md:flex-row md:gap-16">
+    <!-- Imagen + caption izquierda -->
+    <div class="group section-2-image flex flex-col items-center gap-5">
+      <img
+        src={imageSrc}
+        alt="Philosopher"
+        class="pointer-events-none h-64 w-auto transition-transform duration-800 ease-out group-hover:scale-105 md:h-130"
+        aria-hidden="true"
+      />
+      <p class="text-md text-[var(--bg)] transition-colors duration-800 ease-out group-hover:scale-105 group-hover:text-[var(--fg)] md:text-base">
+        {captionText}
+      </p>
+    </div>
 
-    <img
-      src={woman}
-      alt="Woman"
-      class="woman-figure pointer-events-none absolute top-1/2 -left-50 z-0 h-225 w-auto -translate-y-1/2 rotate-20"
-      aria-hidden="true"
-    />
-
-    <p class="my-4 w-full text-center text-2xl md:w-2/3">2026/01/01</p>
-    <p class="my-4 w-full text-left text-xl md:w-2/3">
-      Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una idea
-      con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
-    </p>
+    <!-- Texto derecha -->
+    <div class="section-2-text flex max-w-xl flex-col text-left">
+      <p class="my-4 w-full text-left text-2xl">2026/01/01</p>
+      <p class="my-4 w-full text-left text-xl">
+        Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una
+        idea con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
+      </p>
+    </div>
   </div>
-
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <img
-      src={apollo}
-      alt="Apollo"
-      class="apollo-figure pointer-events-none absolute top-1/2 -left-230 z-0 h-225 w-auto -translate-y-1/2 rotate-25"
-      aria-hidden="true"
-    />
+    <div class="relative flex items-center justify-center">
+      <!-- Corona de laurel -->
+      <img
+        src={laurelImage}
+        alt="laurel"
+        class="laurel-icon pointer-events-none z-10 h-180"
+        aria-hidden="true"
+      />
 
-    <img
-      src={poseidon}
-      alt="Poseidon"
-      class="poseidon-figure pointer-events-none absolute top-5/12 -right-230 z-0 h-225 w-auto -translate-y-1/2 -rotate-25"
-      aria-hidden="true"
-    />
+      <!-- FAQs: centro pero un poco arriba a la izquierda -->
+      <!-- FAQs -->
+      <button
+        type="button"
+        class="footer-link absolute top-[25%] left-[18%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en FAQs')}
+      >
+        FAQs
+      </button>
 
-    <p class="my-4 w-full text-center text-2xl md:w-2/3">Aquí irá el footer y toda la info relacionada.</p>
-    <p class="my-4 w-full text-center text-xl md:w-2/3">Texto ejemplo</p>
+      <!-- Doc -->
+      <button
+        type="button"
+        class="footer-link absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Doc')}
+      >
+        Doc
+      </button>
+
+      <!-- Tech -->
+      <button
+        type="button"
+        class="footer-link absolute top-[61%] left-[20%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Tech')}
+      >
+        Tech
+      </button>
+
+      <!-- Donar -->
+      <button
+        type="button"
+        class="footer-link absolute top-[25%] right-[17%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => console.log('Click en Donar')}
+      >
+        Donar
+      </button>
+
+      <!-- GitHub -->
+      <!-- <button
+        type="button"
+        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={goToGithub}
+      >
+        GitHub
+      </button> -->
+      <a
+        href={urlGithub}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+      >
+        GitHub
+      </a>
+
+      <!-- J. Olmos -->
+      <!-- <button
+        type="button"
+        class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={goToJOlmos}
+      >
+        J. Olmos
+      </button> -->
+      <a
+        href={urlJOlmos}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+      >
+        J. Olmos
+      </a>
+    </div>
   </div>
+  <ScrollToTopButton />
 </div>
-
-<!-- 
-    
-          // onComplete: () => floatItems('.section-1 p') -->
