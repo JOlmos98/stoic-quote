@@ -16,9 +16,7 @@
   const ICONS: Record<Theme, string> = { light: 'https://i.imgur.com/euBs7nd.png', dark: 'https://i.imgur.com/5KcCa05.png', stoic: 'https://i.imgur.com/IszGtyr.png' };
   const LAURELS: Record<Theme, string> = { light: 'https://i.imgur.com/0BqUIS6.png', dark: 'https://i.imgur.com/STZpD5E.png', stoic: 'https://i.imgur.com/ku8YVNo.png' };
 
-  const urlFAQs = 'https://www.ejemplo.com/j-olmos';
-  const urlTech = 'https://www.ejemplo.com/j-olmos';
-  const urlDonar = 'https://www.ejemplo.com/j-olmos';
+  const urlDonar = 'https://www.paypal.com/es/home';
   const urlGithub = 'https://github.com/JOlmos98/stoic-quote';
   const urlJOlmos = 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en';
 
@@ -38,10 +36,10 @@
     goto('/docs/faqs');
   }
   function goToDocs() {
-    goto('/notes');
+    goto('/docs');
   }
   function goToTech() {
-    goto(urlTech);
+    goto('/docs/this_project');
   }
   function goToDonar() {
     goto(urlDonar);

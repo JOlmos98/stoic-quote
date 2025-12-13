@@ -1,0 +1,12 @@
+---
+title: "Cómo pensar como un estoico en 2026"
+description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
+---
+
+# This project
+
+---
+
+## X. aaaaaaaaaa
+
+En esta web se expondrá una cita estoica **distinta cada día** y su respectiva explicación/conclusión. La idea es facilitar el entendimiento de esta filosofía e inspirar y motivar a los visitantes con dichas citas.
