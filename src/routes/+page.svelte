@@ -292,7 +292,6 @@
         Tech
       </button>
 
-      <!-- Donar -->
       <button
         type="button"
         class="footer-link absolute top-[25%] right-[17%] z-20 cursor-pointer
@@ -303,16 +302,6 @@
         Donar
       </button>
 
-      <!-- GitHub -->
-      <!-- <button
-        type="button"
-        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={goToGithub}
-      >
-        GitHub
-      </button> -->
       <a
         href={urlGithub}
         target="_blank"
@@ -324,16 +313,6 @@
         GitHub
       </a>
 
-      <!-- J. Olmos -->
-      <!-- <button
-        type="button"
-        class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={goToJOlmos}
-      >
-        J. Olmos
-      </button> -->
       <a
         href={urlJOlmos}
         target="_blank"
