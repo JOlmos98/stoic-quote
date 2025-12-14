@@ -1,5 +1,26 @@
 {
-    "$schema": "https://inlang.com/schema/inlang-message-format",
-    "hello_world": "Hola, {name} desde españita!",
-    "example_text": "Esto es un texto de ejemplo: parece que Svelte NO usa el /lang/ en la ruta, curioso, mucho más limpio, parece magia."
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+
+  "faqs_meta_title": "FAQs",
+  "faqs_meta_description": "StoicQuote FAQs",
+
+  "faqs_title": "FAQs",
+
+  "faqs_q1_question": "¿Qué es esta web?",
+  "faqs_q1_answer": "En esta web se expondrá una cita estoica **distinta cada día** y su respectiva explicación/conclusión. La idea es facilitar el entendimiento de esta filosofía e inspirar y motivar a los visitantes con dichas citas.",
+
+  "faqs_q2_question": "¿Cuál es la finalidad de esta web?",
+  "faqs_q2_answer": "Divulgar y promover los valores y principios del estoicismo. En la sociedad actual, gran parte de la población (sobretodo las generaciones más jóvenes) rechazan la religión heredada. El rechazo de las antiguas religiones deja un vacío enorme en la moralidad y espiritualidad del ser humano. En el equipo de StoicQuote creemos que el estoicismo puede aportar ese factor necesario para completar al ser humano liberándolo así de esas características negativas de su respectiva religión heredada.",
+
+  "faqs_q3_question": "¿Usas IA de alguna forma para generar el contenido de la web?",
+  "faqs_q3_answer": "No, todo lo expuesto en la web es generado íntegramente por el equipo de StoicQuote. Las citas son extraídas de distintos libros y textos (véase las referencias) y el contexto y explicación/conclusión de las mismas ha sido redactado por el equipo de StoicQuote buscando facilitar el entendimiento e interiorización de la cita expuesta.",
+
+  "faqs_q4_question": "¿Las citas son exclusivamente de filósofos estoicos?",
+  "faqs_q4_answer": "No, los autores de dichas citas van desde diversos personajes históricos hasta personalidades de la actualidad, teniendo en cuenta a ciertos filósofos o científicos que **nunca se han declarado estoicos** pero alguna de sus citas casan a la perfección con la filosofía estoica.",
+
+  "faqs_q5_question": "¿Cómo puedo contribuir?",
+  "faqs_q5_answer": "Puedes contribuir realizando una [donación](www.paypal.com) para facilitar el mantenimiento de la web o enviando alguna cita (con su respectiva referencia) que consideres que encaja con la filosofía estoica al email stoicquotejos@gmail.com.",
+
+  "faqs_q6_question": "¿Por qué seguir divulgando sobre estoicismo? Si todo el mundo sabe lo que es.",
+  "faqs_q6_answer": "Muchos imaginan a los estoicos como señores serios, con túnicas y barba, mirando al horizonte mientras sueltan frases dignas de tatuaje minimalista. La realidad es menos instagramable: eran **personas normales**, con problemas normales,\\nque desarrollaron *herramientas mentales extremadamente útiles* para no volverse locos."
 }

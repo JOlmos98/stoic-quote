@@ -3,10 +3,20 @@ title: "Cómo pensar como un estoico en 2026"
 description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
 ---
 
-# How to be stoic
+# Cómo ser estoico
 
 ---
 
-## X. aaaaaaaaaa
+Esto servirá como una pequeña guía para ser un poco más esctoico cada día, intentando no caer en la falacia de la dicotomía, no se puede ser "no estoico" y levantarte al día siguiente siendo la encarnación de Marco Aurelio, es cuestión de hábitos y autoaprendizaje.
 
-En esta web se expondrá una cita estoica **distinta cada día** y su respectiva explicación/conclusión. La idea es facilitar el entendimiento de esta filosofía e inspirar y motivar a los visitantes con dichas citas.
+## Hábitos a practicar
+
+...
+
+## Preguntas que hacerse
+
+...
+
+## La mentalidad idónea para una vida estoica
+
+...

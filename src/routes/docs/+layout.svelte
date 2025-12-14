@@ -91,7 +91,7 @@
             {#if sidebarOpen}
               <span class="truncate">{link.label}</span>
             {:else}
-              <span class="mx-auto text-xs text-[var(--muted)]">
+              <span class="mx-auto text-xs text-[var(--accent)]">
                 {link.label.slice(0, 2).toUpperCase()}
               </span>
             {/if}
@@ -124,9 +124,9 @@
                    prose-li:marker:text-[var(--accent)]
                    prose-table:text-sm
                    prose-thead:border-b-[1px]
-                   prose-thead:border-[var(--muted)]/40
+                   prose-thead:border-[var(--accent)]/40
                    prose-th:text-[var(--fg)]
-                   prose-hr:border-[var(--muted)]/40"
+                   prose-hr:border-[var(--accent)]/40"
           >
             <slot />
           </article>

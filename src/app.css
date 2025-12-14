@@ -8,7 +8,7 @@
     --bg: #FCF1DB;
     --fg: #785D41; /* texto claro */
     --muted: #BFB6A6; /* texto secundario */
-    /* --accent: #e3c36f; dorado/ambar */
+    --accent: #111827; /* dorado/ambar */
     --pillarFill: #F2F2F2;
     --lines: #785D41; /* texto oscuro #785D41 */
   }
@@ -17,8 +17,8 @@
   :root[data-theme='light'] {
     --bg: #f9fafb; /* gris muy claro */
     --fg: #111827; /* texto oscuro */
-    --muted: #9C9C9C; /* gris medio para secundarios */
-    /* --accent: #e3c36f; marrón/anaranjado */
+    --muted: #785D41; /* gris medio para secundarios */
+    --accent: #785D41; /* marrón/anaranjado */
     --pillarFill: #FFFFFF;
     --lines: #785D41; /* texto oscuro */
   }
@@ -28,7 +28,7 @@
     --bg: #020617; /* casi negro */
     --fg: #EDEDED; /* texto claro */
     --muted: #A3A3A3; /* gris medio */
-    /* --accent: #9e8b44; naranja vivo */
+    --accent: #9e8b44; /* naranja vivo */
     --pillarFill: #1F1F1F;
     --lines: #785D41; /* texto oscuro */
   }

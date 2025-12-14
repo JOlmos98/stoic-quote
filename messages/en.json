@@ -1,5 +1,26 @@
 {
-    "$schema": "https://inlang.com/schema/inlang-message-format",
-    "hello_world": "Hello, {name} from england!",
-    "example_text": "This is an example text: it seems that Svelte uses the /lang/ in the path, curious, much cleaner, seems magic."
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+
+  "faqs_meta_title": "FAQs",
+  "faqs_meta_description": "StoicQuote FAQs",
+
+  "faqs_title": "FAQs",
+
+  "faqs_q1_question": "What is this website?",
+  "faqs_q1_answer": "On this website, a **different Stoic quote** will be shown every day along with its explanation/conclusion. The goal is to make this philosophy easier to understand and to inspire and motivate visitors through these quotes.",
+
+  "faqs_q2_question": "What is the purpose of this website?",
+  "faqs_q2_answer": "To spread and promote the values and principles of Stoicism. In today's society, a large part of the population (especially younger generations) rejects inherited religion. The rejection of old religions leaves a huge void in human morality and spirituality. At StoicQuote, we believe Stoicism can provide the missing piece—helping people become more whole while freeing them from the negative traits of the religion they inherited.",
+
+  "faqs_q3_question": "Do you use AI in any way to generate the website's content?",
+  "faqs_q3_answer": "No. Everything presented on the website is created entirely by the StoicQuote team. The quotes are taken from different books and texts (see the references), and the context and explanation/conclusion are written by the StoicQuote team to make the quote easier to understand and internalize.",
+
+  "faqs_q4_question": "Are the quotes exclusively from Stoic philosophers?",
+  "faqs_q4_answer": "No. The authors range from historical figures to modern public personalities, including certain philosophers or scientists who **have never identified as Stoics**, but whose quotes fit Stoic philosophy perfectly.",
+
+  "faqs_q5_question": "How can I contribute?",
+  "faqs_q5_answer": "You can contribute by making a [donation](www.paypal.com) to help maintain the website, or by emailing us a quote (with its reference) that you think matches Stoic philosophy at stoicquotejos@gmail.com.",
+
+  "faqs_q6_question": "Why keep promoting Stoicism if everyone already knows what it is?",
+  "faqs_q6_answer": "Many people picture Stoics as serious guys in robes with beards, staring at the horizon while dropping minimalist tattoo-worthy quotes. Reality is less Instagram-friendly: they were **ordinary people**, with ordinary problems,\\nwho developed *extremely useful mental tools* to avoid going crazy."
 }

@@ -3,7 +3,9 @@ title: "Cómo pensar como un estoico en 2026"
 description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
 ---
 
-# This project
+
+
+# Este proyecto
 
 ---
 
