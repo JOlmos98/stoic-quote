@@ -8,8 +8,7 @@ description: "StoicQuote FAQs"
   import { marked } from 'marked';
 
   // Opción recomendable (evita ids raros en SSR/hydration)
-  marked.setOptions({ async: false, mangle: false, headerIds: false });
-
+  // marked.setOptions({ async: false, mangle: false, headerIds: false });
   const md = (value: string) => marked.parse(value) as string;
 </script>
 

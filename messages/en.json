@@ -1,26 +1,36 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format",
-
-  "faqs_meta_title": "FAQs",
-  "faqs_meta_description": "StoicQuote FAQs",
-
-  "faqs_title": "FAQs",
-
-  "faqs_q1_question": "What is this website?",
-  "faqs_q1_answer": "On this website, a **different Stoic quote** will be shown every day along with its explanation/conclusion. The goal is to make this philosophy easier to understand and to inspire and motivate visitors through these quotes.",
-
-  "faqs_q2_question": "What is the purpose of this website?",
-  "faqs_q2_answer": "To spread and promote the values and principles of Stoicism. In today's society, a large part of the population (especially younger generations) rejects inherited religion. The rejection of old religions leaves a huge void in human morality and spirituality. At StoicQuote, we believe Stoicism can provide the missing piece—helping people become more whole while freeing them from the negative traits of the religion they inherited.",
-
-  "faqs_q3_question": "Do you use AI in any way to generate the website's content?",
-  "faqs_q3_answer": "No. Everything presented on the website is created entirely by the StoicQuote team. The quotes are taken from different books and texts (see the references), and the context and explanation/conclusion are written by the StoicQuote team to make the quote easier to understand and internalize.",
-
-  "faqs_q4_question": "Are the quotes exclusively from Stoic philosophers?",
-  "faqs_q4_answer": "No. The authors range from historical figures to modern public personalities, including certain philosophers or scientists who **have never identified as Stoics**, but whose quotes fit Stoic philosophy perfectly.",
-
-  "faqs_q5_question": "How can I contribute?",
-  "faqs_q5_answer": "You can contribute by making a [donation](www.paypal.com) to help maintain the website, or by emailing us a quote (with its reference) that you think matches Stoic philosophy at stoicquotejos@gmail.com.",
-
-  "faqs_q6_question": "Why keep promoting Stoicism if everyone already knows what it is?",
-  "faqs_q6_answer": "Many people picture Stoics as serious guys in robes with beards, staring at the horizon while dropping minimalist tattoo-worthy quotes. Reality is less Instagram-friendly: they were **ordinary people**, with ordinary problems,\\nwho developed *extremely useful mental tools* to avoid going crazy."
+    "$schema": "https://inlang.com/schema/inlang-message-format",
+    "faqs_meta_title": "FAQs",
+    "faqs_meta_description": "StoicQuote FAQs",
+    "faqs_title": "FAQs",
+    "faqs_q1_question": "What is this website?",
+    "faqs_q1_answer": "On this website, a **different Stoic quote** will be shown every day along with its explanation/conclusion. The goal is to make this philosophy easier to understand and to inspire and motivate visitors through these quotes.",
+    "faqs_q2_question": "What is the purpose of this website?",
+    "faqs_q2_answer": "To spread and promote the values and principles of Stoicism. In today's society, a large part of the population (especially younger generations) rejects inherited religion. The rejection of old religions leaves a huge void in human morality and spirituality. At StoicQuote, we believe Stoicism can provide the missing piece—helping people become more whole while freeing them from the negative traits of the religion they inherited.",
+    "faqs_q3_question": "Is AI used to generate the website's content?",
+    "faqs_q3_answer": "No. Everything presented on the website is created entirely by the StoicQuote team. The quotes are taken from different books and texts (see the references), and the context and explanation/conclusion are written by the StoicQuote team to make the quote easier to understand and internalize.",
+    "faqs_q4_question": "Are the quotes exclusively from Stoic philosophers?",
+    "faqs_q4_answer": "No. The authors range from historical figures to modern public personalities, including certain philosophers or scientists who **have never identified as Stoics**, but whose quotes fit Stoic philosophy perfectly.",
+    "faqs_q5_question": "How can I contribute?",
+    "faqs_q5_answer": "You can contribute by making a [donation](www.paypal.com) to help maintain the website, or by emailing us a quote (with its reference) that you think matches Stoic philosophy at stoicquotejos@gmail.com.",
+    "faqs_q6_question": "Why keep promoting Stoicism if everyone already knows what it is?",
+    "faqs_q6_answer": "Many people picture Stoics as serious guys in robes with beards, staring at the horizon while dropping minimalist tattoo-worthy quotes. Reality is less Instagram-friendly: they were **ordinary people**, with ordinary problems,\\nwho developed *extremely useful mental tools* to avoid going crazy.",
+    "how_to_be_stoic_title": "How to Be Stoic",
+    "how_to_be_stoic_intro": "A small guide to becoming a bit more stoic each day, without falling into the false dichotomy fallacy: you can’t be “not stoic” and wake up the next day as the embodiment of Marcus Aurelius; it’s a matter of habits and self-learning.",
+    "how_to_be_stoic_habits_title": "Habits to Practice",
+    "how_to_be_stoic_habit_1": "Write down a negative comment you receive—or something that disturbs you during the day. Reflect on whether it truly affects your inner peace unnecessarily. Learn to separate useful criticism from harmful criticism.",
+    "how_to_be_stoic_habit_2": "During the day, identify an impulse (anger, speaking without thinking, actions you wouldn’t choose if you reflected calmly). Pause for five seconds before acting. Reflect on your reaction.",
+    "how_to_be_stoic_habit_3": "Before you start the day, do you stop to think—or do you only react? Taking a few minutes to think, without distractions, can give you more clarity, calm, and direction than any external stimulus. Don’t let social media steer your life; steer it consciously and actively.",
+    "how_to_be_stoic_habit_4": "Self-observation is crucial for personal growth. We all make mistakes; we can all improve—but without self-observation and self-critique, we won’t be able to. Try to observe yourself daily as if you were a third person.",
+    "how_to_be_stoic_habit_5": "Visualizing adversity is an exercise promoted by several of the greatest Stoics. They asked themselves questions like: What can I do if this happens? What part of this event is under my control (the dichotomy of control)? Why is this event natural and inevitable?",
+    "how_to_be_stoic_marcus_quote": "> In the morning, tell yourself: Today I will meet an intrusive, ungrateful, arrogant, deceitful, envious, and unsocial person. All these things have happened to them because they do not know what is truly good and bad. But I, who understand the nature of the good—that it is worthy of desire—and of the bad—that it is truly shameful—also know that the wrongdoer is my relative, not by blood, but by sharing the same reason and a portion of the divine. How could I be harmed by any of them, since it is not in their power to make me do anything truly blameworthy or to make me angry and hostile toward someone who is naturally close to me? For we are born to work together.\n>\n> — Marcus Aurelius",
+    "how_to_be_stoic_pigliucci_note": "Pigliucci called this Stoic exercise *premeditatio malorum*.",
+    "how_to_be_stoic_questions_title": "Questions to Ask Yourself",
+    "how_to_be_stoic_q1": "When a thought disturbs you, apply the famous dichotomy of control: Is there anything I can do to control the fact that’s bothering me? If not, it isn’t worth worrying about. Then practice amor fati: love your fate and accept what happens.",
+    "how_to_be_stoic_q2": "How much does this really matter in the context of my whole life?",
+    "how_to_be_stoic_kahneman_quote": "> Nothing is as serious as it seems when you think about it.\n>\n> — Daniel Kahneman",
+    "how_to_be_stoic_q3": "What can I be grateful for today? If you think coldly and make an effort to value the life you have, you’ll find deep satisfaction in the life you’re living. Many Stoics insist on appreciating small things. This isn’t about being hedonistic—quite the opposite. It’s about valuing as much as possible what you already possess and avoiding excessive desire, because that tends to create near-chronic dissatisfaction. Be grateful for having two working legs and arms, for never going hungry, for hot showers, and even for the pleasure of feeling the sun on your skin every day.",
+    "how_to_be_stoic_cato_quote": "> Try to convince yourself that death should not be feared: if it is not a good, it is at least the end of all evils.\n>\n> — Cato the Younger",
+    "how_to_be_stoic_mindset_title": "The Right Mindset for a Stoic Life",
+    "how_to_be_stoic_mindset_body": "Being Stoic isn’t about “feeling less.” It’s about thinking better, choosing better, and building a character that doesn’t depend on luck and avoids victimhood. It’s not about winning every inner battle; it’s about **not surrendering to the first impression** and training your mind the way you train your body—little by little, every day."
 }

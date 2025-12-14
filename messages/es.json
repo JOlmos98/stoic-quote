@@ -1,26 +1,36 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-
   "faqs_meta_title": "FAQs",
   "faqs_meta_description": "StoicQuote FAQs",
-
   "faqs_title": "FAQs",
-
   "faqs_q1_question": "¿Qué es esta web?",
   "faqs_q1_answer": "En esta web se expondrá una cita estoica **distinta cada día** y su respectiva explicación/conclusión. La idea es facilitar el entendimiento de esta filosofía e inspirar y motivar a los visitantes con dichas citas.",
-
   "faqs_q2_question": "¿Cuál es la finalidad de esta web?",
   "faqs_q2_answer": "Divulgar y promover los valores y principios del estoicismo. En la sociedad actual, gran parte de la población (sobretodo las generaciones más jóvenes) rechazan la religión heredada. El rechazo de las antiguas religiones deja un vacío enorme en la moralidad y espiritualidad del ser humano. En el equipo de StoicQuote creemos que el estoicismo puede aportar ese factor necesario para completar al ser humano liberándolo así de esas características negativas de su respectiva religión heredada.",
-
-  "faqs_q3_question": "¿Usas IA de alguna forma para generar el contenido de la web?",
+  "faqs_q3_question": "¿Se usa IA de alguna forma para generar el contenido de la web?",
   "faqs_q3_answer": "No, todo lo expuesto en la web es generado íntegramente por el equipo de StoicQuote. Las citas son extraídas de distintos libros y textos (véase las referencias) y el contexto y explicación/conclusión de las mismas ha sido redactado por el equipo de StoicQuote buscando facilitar el entendimiento e interiorización de la cita expuesta.",
-
   "faqs_q4_question": "¿Las citas son exclusivamente de filósofos estoicos?",
   "faqs_q4_answer": "No, los autores de dichas citas van desde diversos personajes históricos hasta personalidades de la actualidad, teniendo en cuenta a ciertos filósofos o científicos que **nunca se han declarado estoicos** pero alguna de sus citas casan a la perfección con la filosofía estoica.",
-
   "faqs_q5_question": "¿Cómo puedo contribuir?",
   "faqs_q5_answer": "Puedes contribuir realizando una [donación](www.paypal.com) para facilitar el mantenimiento de la web o enviando alguna cita (con su respectiva referencia) que consideres que encaja con la filosofía estoica al email stoicquotejos@gmail.com.",
-
   "faqs_q6_question": "¿Por qué seguir divulgando sobre estoicismo? Si todo el mundo sabe lo que es.",
-  "faqs_q6_answer": "Muchos imaginan a los estoicos como señores serios, con túnicas y barba, mirando al horizonte mientras sueltan frases dignas de tatuaje minimalista. La realidad es menos instagramable: eran **personas normales**, con problemas normales,\\nque desarrollaron *herramientas mentales extremadamente útiles* para no volverse locos."
+  "faqs_q6_answer": "Muchos imaginan a los estoicos como señores serios, con túnicas y barba, mirando al horizonte mientras sueltan frases dignas de tatuaje minimalista. La realidad es menos instagramable: eran **personas normales**, con problemas normales,\\nque desarrollaron *herramientas mentales extremadamente útiles* para no volverse locos.",
+  "how_to_be_stoic_title": "Cómo ser estoico",
+  "how_to_be_stoic_intro": "Una pequeña guía para ser un poco más estoico cada día, intentando no caer en la falacia de la falsa dicotomía: no se puede ser \"no estoico\" y levantarte al día siguiente siendo la encarnación de Marco Aurelio; es cuestión de hábitos y autoaprendizaje.",
+  "how_to_be_stoic_habits_title": "Hábitos a practicar",
+  "how_to_be_stoic_habit_1": "Anota un comentario negativo que recibas o algo que te perturbe a lo largo de tu día; reflexiona si realmente afecta tu paz interior innecesariamente. Aprende a separar crítica útil de la dañina.",
+  "how_to_be_stoic_habit_2": "Durante el día, identifica un impulso (enfado, hablar sin pensar, acciones que realmente no querrías hacer si las pensases fríamente), detente cinco segundos antes de actuar. Reflexiona sobre tu reacción.",
+  "how_to_be_stoic_habit_3": "Antes de empezar el día, ¿te detienes a pensar o sólo reaccionas? Tomarte unos minutos para pensar, sin distracciones, puede darte más claridad, calma y dirección que cualquier estímulo externo. Que las redes sociales no dirijan tu vida; dirígela tú consciente y activamente.",
+  "how_to_be_stoic_habit_4": "La autoobservación es crucial para el crecimiento espiritual del individuo. Todos cometemos errores, todos podemos mejorar, pero sin la autoobservación y autocrítica seremos incapaces de hacerlo. Intenta diariamente observarte en tercera persona.",
+  "how_to_be_stoic_habit_5": "Visualizar la adversidad es un ejercicio promovido por varios de los más grandes estoicos. Para ello se hacían preguntas como: ¿qué puedo hacer si esto sucede? ¿Qué parte de este evento está bajo mi control (dicotomía del control)? ¿Por qué este evento es natural e inevitable?",
+  "how_to_be_stoic_marcus_quote": "> A veces por la mañana díganse a sí mismos: Hoy tendré que tratar con un hombre curioso ocioso, con un hombre ingrato, un burlador, un hombre astuto, falso o envidioso; un hombre poco sociable y caritativo. Todas estas malas cualidades les han sucedido por ignorancia de lo que es verdaderamente bueno y malo. Pero yo, que entiendo la naturaleza de lo que es bueno, que sólo para desear, y de lo que es malo, que sólo es verdaderamente odioso y vergonzoso: ¿quién sabe además que este transgresor, quienquiera que sea, es pariente mío, no por la misma sangre y simiente, sino por participación de la misma razón, y de la misma partícula divina? ¿Cómo puedo ser herido por cualquiera de ellos, ya que no está en su poder hacerme incurrir en algo que sea verdaderamente reprochable o enojado, y mal afectado hacia él, que por naturaleza está tan cerca de mí, porque todos nacemos para ser colaboradores.\n>\n> — Marco Aurelio",
+  "how_to_be_stoic_pigliucci_note": "Pigliucci denominaba a este ejercicio estoico la *premeditatio malorum*.",
+  "how_to_be_stoic_questions_title": "Preguntas que hacerse",
+  "how_to_be_stoic_q1": "Cuando un pensamiento te perturbe, pon en práctica la famosa dicotomía del control: ¿hay algo que pueda hacer para controlar este hecho que me perturba? Si no lo hay, no merece la pena preocuparse por ello. Entonces debemos poner en práctica el amor fati: amar al destino y aceptar los sucesos.",
+  "how_to_be_stoic_q2": "¿Qué importancia real tiene esto en el conjunto de mi vida?",
+  "how_to_be_stoic_kahneman_quote": "> Nada es tan grave como parece cuando lo piensas.\n>\n> — Daniel Kahneman",
+  "how_to_be_stoic_q3": "¿Por qué puedo estar agradecido hoy? Si lo piensas fríamente y haces un esfuerzo por valorar la vida que tienes, encontrarás una gran satisfacción en llevar la vida que llevas. Muchos estoicos insisten en valorar las pequeñas cosas: no se trata de ser hedonista, todo lo contrario; se trata de valorar lo máximo posible lo que ya posees y evitar desear demasiado, ya que eso te provocará una insatisfacción casi crónica. Debemos agradecer tener ambas piernas y ambos brazos funcionales, nunca pasar hambre, las duchas con agua caliente, incluso poder sentir el placer de ser golpeados por el sol todos los días.",
+  "how_to_be_stoic_cato_quote": "> Intenta convencerte de que la muerte no debe ser temida: de hecho, ésta, si no es un bien, es al menos el fin de todos los males\n>\n> — Catón el Joven",
+  "how_to_be_stoic_mindset_title": "La mentalidad idónea para una vida estoica",
+  "how_to_be_stoic_mindset_body": "Ser estoico no es “sentir menos”. Es pensar mejor, elegir mejor y construir un carácter que no dependa de la suerte y evite el victimismo. No se trata de ganar cada batalla interna; se trata de **no rendirte a la primera impresión** y entrenar tu mente como entrenas el cuerpo: poco a poco, a diario."
 }

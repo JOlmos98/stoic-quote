@@ -212,8 +212,8 @@
     <!-- Pilar derecho -->
     <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
 
-    <!-- Contenido textual (por encima de los pilares) -->
-    <div class="z-10 flex flex-col items-center px-4 transition-transform duration-900 hover:scale-120">
+    <!-- Contenido textual (por encima de los pilares)  transition-transform duration-900 hover:scale-120 -->
+    <div class="z-10 flex flex-col items-center px-4">
       <p class="my-4 w-full text-center text-2xl md:w-2/3">No pierdas el tiempo en discutir con los estúpidos y los charlatanes: la palabra la tienen todos, el buen juicio sólo unos pocos.</p>
       <p class="my-4 w-full text-center text-xl md:w-2/3">Catón el Joven</p>
     </div>
