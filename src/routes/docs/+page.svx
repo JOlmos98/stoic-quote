@@ -1,12 +1,39 @@
+
+
+<script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+
+//---
+//title: "Docs"
+//description: "StoicQuote Docs"
+//---
+
+  export const metadata = {
+    title: m.docs_title(),
+    description: m.docs_intro()
+  };
+</script>
+
+# {m.docs_title()}
+
 ---
-title: "Cómo pensar como un estoico en 2026"
-description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
----
 
+##  {m.docs_faqs_title()}
 
+{m.docs_faqs_desc()} [{m.docs_faqs_link_text()}](/docs/faqs).
 
-# Docs
+## {m.docs_great_stoics_title()}
 
----
+{m.docs_great_stoics_desc()} [{m.docs_great_stoics_link_text()}](/docs/the_great_stoics).
 
-## X. aaa
+## {m.docs_how_to_be_stoic_title()}
+
+{m.docs_how_to_be_stoic_desc()} [{m.docs_how_to_be_stoic_link_text()}](/docs/how_to_be_stoic).
+
+## {m.docs_key_concepts_title()}
+
+{m.docs_key_concepts_desc()} [{m.docs_key_concepts_link_text()}](/docs/key_concepts).
+
+## {m.docs_this_project_title()}
+
+{m.docs_this_project_desc()} [{m.docs_this_project_link_text()}](/docs/this_project).

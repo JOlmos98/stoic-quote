@@ -1,5 +1,19 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
+    "hello_world": "Hello, {name} from england!",
+    "example_text": "This is an example text: it seems that Svelte uses the /lang/ in the path, curious, much cleaner, seems magic.",
+    "docs_title": "Docs",
+    "docs_intro": "In this part of the website, you’ll find relevant information about it, along with more detailed content on Stoic philosophy, its most prominent figures, its key concepts, and a short guide to help the reader internalize Stoicism.",
+    "docs_faqs_title": "FAQs",
+    "docs_faqs_desc": "Frequently asked questions about the website.",
+    "docs_great_stoics_title": "The most important Stoics",
+    "docs_great_stoics_desc": "A mention of the most influential Stoics of this philosophy and a brief description of the lives they lived.",
+    "docs_how_to_be_stoic_title": "How to be stoic",
+    "docs_how_to_be_stoic_desc": "A short guide to help the reader integrate certain Stoic habits into their daily life to gradually align with the quotes shown.",
+    "docs_key_concepts_title": "Key concepts",
+    "docs_key_concepts_desc": "A glossary of the most useful and commonly used concepts and terms in the Stoic context—most of them in Latin or Greek.",
+    "docs_this_project_title": "This project",
+    "docs_this_project_desc": "Information about the development of this project, the technologies used, and a link to the GitHub repository.",
     "faqs_meta_title": "FAQs",
     "faqs_meta_description": "StoicQuote FAQs",
     "faqs_title": "FAQs",
@@ -32,5 +46,10 @@
     "how_to_be_stoic_q3": "What can I be grateful for today? If you think coldly and make an effort to value the life you have, you’ll find deep satisfaction in the life you’re living. Many Stoics insist on appreciating small things. This isn’t about being hedonistic—quite the opposite. It’s about valuing as much as possible what you already possess and avoiding excessive desire, because that tends to create near-chronic dissatisfaction. Be grateful for having two working legs and arms, for never going hungry, for hot showers, and even for the pleasure of feeling the sun on your skin every day.",
     "how_to_be_stoic_cato_quote": "> Try to convince yourself that death should not be feared: if it is not a good, it is at least the end of all evils.\n>\n> — Cato the Younger",
     "how_to_be_stoic_mindset_title": "The Right Mindset for a Stoic Life",
-    "how_to_be_stoic_mindset_body": "Being Stoic isn’t about “feeling less.” It’s about thinking better, choosing better, and building a character that doesn’t depend on luck and avoids victimhood. It’s not about winning every inner battle; it’s about **not surrendering to the first impression** and training your mind the way you train your body—little by little, every day."
+    "how_to_be_stoic_mindset_body": "Being Stoic isn’t about “feeling less.” It’s about thinking better, choosing better, and building a character that doesn’t depend on luck and avoids victimhood. It’s not about winning every inner battle; it’s about **not surrendering to the first impression** and training your mind the way you train your body—little by little, every day.",
+    "docs_faqs_link_text": "FAQs",
+    "docs_great_stoics_link_text": "The most important Stoics",
+    "docs_how_to_be_stoic_link_text": "How to be stoic",
+    "docs_key_concepts_link_text": "Key concepts",
+    "docs_this_project_link_text": "This project"
 }

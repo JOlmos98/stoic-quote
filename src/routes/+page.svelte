@@ -254,27 +254,26 @@
         class="laurel-icon pointer-events-none z-10 h-180"
         aria-hidden="true"
       />
-
-      <!-- FAQs -->
-      <button
-        type="button"
-        class="footer-link absolute top-[25%] left-[18%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={() => goToFAQs()}
-      >
-        FAQs
-      </button>
-
       <!-- Doc -->
       <button
         type="button"
-        class="footer-link absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
+        class="footer-link absolute top-[28%] left-[18%] z-20 -translate-y-1/2 cursor-pointer
          text-3xl tracking-wide text-[var(--muted)]
          transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
         on:click={() => goToDocs()}
       >
         Docs
+      </button>
+
+      <!-- FAQs -->
+      <button
+        type="button"
+        class="footer-link absolute top-[43%] left-[14%] z-20 cursor-pointer
+         text-3xl tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        on:click={() => goToFAQs()}
+      >
+        FAQs
       </button>
 
       <!-- Tech -->

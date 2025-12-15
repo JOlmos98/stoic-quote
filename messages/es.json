@@ -32,5 +32,22 @@
   "how_to_be_stoic_q3": "¿Por qué puedo estar agradecido hoy? Si lo piensas fríamente y haces un esfuerzo por valorar la vida que tienes, encontrarás una gran satisfacción en llevar la vida que llevas. Muchos estoicos insisten en valorar las pequeñas cosas: no se trata de ser hedonista, todo lo contrario; se trata de valorar lo máximo posible lo que ya posees y evitar desear demasiado, ya que eso te provocará una insatisfacción casi crónica. Debemos agradecer tener ambas piernas y ambos brazos funcionales, nunca pasar hambre, las duchas con agua caliente, incluso poder sentir el placer de ser golpeados por el sol todos los días.",
   "how_to_be_stoic_cato_quote": "> Intenta convencerte de que la muerte no debe ser temida: de hecho, ésta, si no es un bien, es al menos el fin de todos los males\n>\n> — Catón el Joven",
   "how_to_be_stoic_mindset_title": "La mentalidad idónea para una vida estoica",
-  "how_to_be_stoic_mindset_body": "Ser estoico no es “sentir menos”. Es pensar mejor, elegir mejor y construir un carácter que no dependa de la suerte y evite el victimismo. No se trata de ganar cada batalla interna; se trata de **no rendirte a la primera impresión** y entrenar tu mente como entrenas el cuerpo: poco a poco, a diario."
+  "how_to_be_stoic_mindset_body": "Ser estoico no es “sentir menos”. Es pensar mejor, elegir mejor y construir un carácter que no dependa de la suerte y evite el victimismo. No se trata de ganar cada batalla interna; se trata de **no rendirte a la primera impresión** y entrenar tu mente como entrenas el cuerpo: poco a poco, a diario.",
+  "docs_title": "Docs",
+  "docs_intro": "En esta parte de la web se expondrá información relevante sobre ella y se desarrollará información más detallada sobre la filosofía estoica, sus máximos exponentes, sus conceptos clave y una pequeña guía para ayudar al lector a interiorizar la filosofía estoica.",
+  "docs_faqs_title": "FAQs",
+  "docs_faqs_desc": "Preguntas frecuentes sobre la web.",
+  "docs_faqs_link_text": "FAQs",
+  "docs_great_stoics_title": "Los estoicos más importantes",
+  "docs_great_stoics_desc": "Mención a los estoicos más influyentes de dicha filosofía y breve descripción de la vida que llevaron.",
+  "docs_great_stoics_link_text": "Los estoicos más importantes",
+  "docs_how_to_be_stoic_title": "Cómo ser estoico",
+  "docs_how_to_be_stoic_desc": "Breve guía para ayudar al lector a integrar ciertos hábitos estoicos en su vida diaria para alinearse, poco a poco, con las citas expuestas.",
+  "docs_how_to_be_stoic_link_text": "Cómo ser estoico",
+  "docs_key_concepts_title": "Conceptos clave",
+  "docs_key_concepts_desc": "Glosario de los concetos y palabras más útiles y usados en el contexto estoico, la mayoría de ellos son términos en latín o griego.",
+  "docs_key_concepts_link_text": "Conceptos clave",
+  "docs_this_project_title": "Este proyecto",
+  "docs_this_project_desc": "Información sobre el desarrollo de este proyecto, tecnologías usadas y link al repositorio de GitHub.",
+  "docs_this_project_link_text": "Este proyecto"
 }

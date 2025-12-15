@@ -1,0 +1,5 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"hello_world": "Guten morgen, {name} from deutschland!",
+	"example_text": "Das ist ein Beispieltext: es scheint, dass Svelte den /lang/ im Pfad nicht verwendet, erstaunlich, viel sauberer, scheint Magie."
+}

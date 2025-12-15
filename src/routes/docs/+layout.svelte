@@ -7,12 +7,12 @@
   type SidebarLink = { label: string; url: string };
 
   const links: SidebarLink[] = [
-    { label: 'StoicQuote', url: '/' },
+    // { label: 'StoicQuote', url: '/' },
     { label: 'Docs', url: '/docs' },
     { label: 'FAQs', url: '/docs/faqs' },
     { label: 'The great stoics', url: '/docs/the_great_stoics' },
     { label: 'How to be stoic', url: '/docs/how_to_be_stoic' },
-    { label: 'Key words', url: '/docs/key_words' },
+    { label: 'Key concepts', url: '/docs/key_concepts' },
     { label: 'This proyect', url: '/docs/this_project' },
     { label: 'Donation', url: 'https://www.paypal.com/es/home' },
     { label: 'J. Olmos', url: 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en' }
@@ -50,7 +50,7 @@
 
         <button
           type="button"
-          class="text-lg font-semibold tracking-wide hover:text-[var(--accent)]"
+          class="text-lg font-semibold tracking-wide hover:text-[var(--accent)] transition duration-300 cursor-pointer"
           on:click={() => handleClick('/')}
         >
           StoicQuote
@@ -89,7 +89,7 @@
             target={link.url.startsWith('http') ? '_blank' : undefined}
           >
             {#if sidebarOpen}
-              <span class="truncate">{link.label}</span>
+              <span class="truncate text-xl">{link.label}</span>
             {:else}
               <span class="mx-auto text-xs text-[var(--accent)]">
                 {link.label.slice(0, 2).toUpperCase()}
