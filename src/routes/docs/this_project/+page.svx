@@ -1,14 +1,31 @@
+<script lang="ts">
+    import { m } from '$lib/paraglide/messages.js';
+  import { marked } from 'marked';
+
+//---
+//title: "Cómo pensar como un estoico en 2026"
+//description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
+//---
+
+  const md = (text: string) => marked.parse(text ?? '');
+
+  export const metadata = {
+    title: m.this_project_title(),
+    description: m.this_project_intro()
+  };
+</script>
+
+# {m.this_project_title()}
+
 ---
-title: "Cómo pensar como un estoico en 2026"
-description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
----
 
+{@html md(m.this_project_intro())}
 
+- {m.this_project_tech_1()}
+- {m.this_project_tech_2()}
+- {m.this_project_tech_3()}
+- {m.this_project_tech_4()}
+- {m.this_project_tech_5()}
+- {m.this_project_tech_6()}
 
-# Este proyecto
-
----
-
-## X. aaaaaaaaaa
-
-En esta web se expondrá una cita estoica **distinta cada día** y su respectiva explicación/conclusión. La idea es facilitar el entendimiento de esta filosofía e inspirar y motivar a los visitantes con dichas citas.
+{@html md(`${m.this_project_oss_desc()} [${m.this_project_oss_link_text()}](https://github.com/JOlmos98/stoic-quote).`)}
