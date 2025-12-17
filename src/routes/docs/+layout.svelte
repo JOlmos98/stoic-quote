@@ -3,6 +3,7 @@
   import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
   import { goto } from '$app/navigation';
   import { PanelLeftClose, PanelLeftOpen } from 'lucide-svelte';
+  import { onMount } from 'svelte';
 
   type SidebarLink = { label: string; url: string };
 
@@ -13,9 +14,9 @@
     { label: 'The great stoics', url: '/docs/the_great_stoics' },
     { label: 'How to be stoic', url: '/docs/how_to_be_stoic' },
     { label: 'Key concepts', url: '/docs/key_concepts' },
-    { label: 'This proyect', url: '/docs/this_project' },
-    { label: 'Donation', url: 'https://www.paypal.com/es/home' },
-    { label: 'J. Olmos', url: 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en' }
+    { label: 'This proyect', url: '/docs/this_project' }
+    // { label: 'Donation', url: 'https://www.paypal.com/es/home' },
+    // { label: 'J. Olmos', url: 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en' }
   ];
 
   const handleClick = (url: string) => {
@@ -23,6 +24,10 @@
   };
 
   let sidebarOpen = true;
+
+  onMount(() => {
+    sidebarOpen = window.matchMedia('(min-width: 768px)').matches;
+  });
 </script>
 
 <div class="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
@@ -31,7 +36,8 @@
     class="sticky top-0 z-40 border-b border-[var(--lines)]/30
            bg-[var(--bg)]/90 backdrop-blur"
   >
-    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 md:px-6">
+    <!-- <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 md:px-6"> -->
+    <div class="flex w-full items-center justify-between px-4 py-3 md:px-6">
       <div class="flex items-center gap-3">
         <!-- Toggle del sidebar (tipo shadcn) -->
         <button
@@ -50,7 +56,7 @@
 
         <button
           type="button"
-          class="text-lg font-semibold tracking-wide hover:text-[var(--accent)] transition duration-300 cursor-pointer"
+          class="cursor-pointer text-lg font-semibold tracking-wide transition duration-300 hover:text-[var(--accent)]"
           on:click={() => handleClick('/')}
         >
           StoicQuote
@@ -67,13 +73,33 @@
     style={`--sidebar-w: ${sidebarOpen ? '16rem' : '4rem'}`}
   >
     <!-- SIDEBAR fijo a la izquierda -->
-    <aside
+    <!-- <aside
       class={`fixed top-14 left-0 z-30 hidden
               h-[calc(100vh-3.5rem)]
               overflow-hidden border-r border-[var(--lines)]/20 bg-[var(--bg)]/95
               backdrop-blur transition-[width]
               duration-300 md:flex md:flex-col
               ${sidebarOpen ? 'w-64' : 'w-16'}`}
+    > -->
+    {#if sidebarOpen}
+      <button
+        type="button"
+        class="fixed inset-0 top-14 z-20 bg-black/20 md:hidden"
+        aria-label="Cerrar sidebar"
+        on:click={() => (sidebarOpen = false)}
+      ></button>
+    {/if}
+
+    <aside
+      class={`fixed top-14 left-0 z-30
+          flex
+          h-[calc(100vh-3.5rem)] flex-col overflow-hidden border-r
+          border-[var(--lines)]/20 bg-[var(--bg)]/95
+          backdrop-blur
+          transition-[width,transform] duration-300
+          ${sidebarOpen ? 'w-64 translate-x-0' : 'w-64 -translate-x-full'}
+          md:translate-x-0
+          ${sidebarOpen ? 'md:w-64' : 'md:w-16'}`}
     >
       <nav class={`flex flex-col gap-1 ${sidebarOpen ? 'p-3' : 'p-2'}`}>
         {#each links as link}
