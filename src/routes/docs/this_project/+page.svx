@@ -21,11 +21,11 @@
 
 {@html md(m.this_project_intro())}
 
-- {m.this_project_tech_1()}
-- {m.this_project_tech_2()}
-- {m.this_project_tech_3()}
-- {m.this_project_tech_4()}
-- {m.this_project_tech_5()}
-- {m.this_project_tech_6()}
+- {@html md(m.this_project_tech_1())}
+- {@html md(m.this_project_tech_2())}
+- {@html md(m.this_project_tech_3())}
+- {@html md(m.this_project_tech_4())}
+- {@html md(m.this_project_tech_5())}
+- {@html md(m.this_project_tech_6())}
 
 {@html md(`${m.this_project_oss_desc()} [${m.this_project_oss_link_text()}](https://github.com/JOlmos98/stoic-quote).`)}
