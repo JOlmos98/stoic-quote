@@ -3,6 +3,10 @@
   import Column from '$lib/components/SVGs/Column.svelte';
   import ScrollToTopButton from '$lib/components/ScrollToTopButton.svelte';
   import { goto } from '$app/navigation';
+  import { m } from '$lib/paraglide/messages.js';
+  import type { PageData } from './$types';
+  
+  export let data: PageData;
 
   type Theme = 'stoic' | 'light' | 'dark';
   type PhilosopherKey = 'seneca' | 'marco_aurelio' | 'zenon';
@@ -233,7 +237,7 @@
       <img
         src={imageSrc}
         alt="Philosopher"
-        class="pointer-events-none h-64 md:h-130 w-auto transition-transform duration-800 ease-out group-hover:scale-105 "
+        class="pointer-events-none h-64 w-auto transition-transform duration-800 ease-out group-hover:scale-105 md:h-130"
         aria-hidden="true"
       />
       <p class="text-md text-[var(--bg)] transition-colors duration-800 ease-out group-hover:scale-105 group-hover:text-[var(--fg)] md:text-base">
@@ -248,9 +252,8 @@
         Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una
         idea con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
       </p>
-      <p class="my-4 w-full text-left text-xl">Referencias de la cita:</p>
-      <p class="my-4 w-full text-left text-md">{references}</p>
-    
+      <p class="my-4 w-full text-left text-xl">{m.quoteReferencesTitle()}</p>
+      <p class="text-md my-4 w-full text-left">{references}</p>
     </div>
   </div>
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
@@ -304,10 +307,10 @@
         class="footer-link text-md absolute top-[30%] right-[21%] z-20
    cursor-pointer tracking-wide text-[var(--muted)]
    transition-colors duration-500 hover:text-[var(--bg)]
-   md:top-[25%] md:right-[17%] md:text-4xl"
+   md:top-[25%] md:right-[15%] md:text-4xl"
         on:click={() => console.log('Click en Donar')}
       >
-        Donar
+        {m.footerDonate()}
       </button>
 
       <!-- GitHub -->
