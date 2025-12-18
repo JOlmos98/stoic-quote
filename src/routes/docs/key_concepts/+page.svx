@@ -1,0 +1,46 @@
+<script lang="ts">
+    import { m } from '$lib/paraglide/messages.js';
+  import { marked } from 'marked';
+
+//---
+//title: "Cómo pensar como un estoico en 2026"
+//description: "Un pequeño ensayo para probar mdsvex en StoicQuote."
+//---
+
+  const md = (text: string) => marked.parse(text ?? '');
+  
+  export const metadata = {
+    title: m.key_concepts_title(),
+    description: m.key_concepts_intro()
+  };
+</script>
+
+# {m.key_concepts_title()}
+
+---
+
+{@html md(m.key_concepts_intro())}
+
+## 1. {m.key_concepts_1_title()}
+
+{@html md(m.key_concepts_1_body())}
+
+## 2. {m.key_concepts_2_title()}
+
+{@html md(m.key_concepts_2_body())}
+
+## 3. {m.key_concepts_3_title()}
+
+{@html md(m.key_concepts_3_body())}
+
+## 4. {m.key_concepts_4_title()}
+
+{@html md(m.key_concepts_4_body())}
+
+## 5. {m.key_concepts_5_title()}
+
+{@html md(m.key_concepts_5_body())}
+
+## 6. {m.key_concepts_6_title()}
+
+{@html md(m.key_concepts_6_body())}

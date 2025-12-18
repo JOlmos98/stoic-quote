@@ -1,0 +1,57 @@
+---
+title: "How to Be Stoic"
+description: "StoicQuote · How to Be Stoic"
+---
+
+<script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+  import { marked } from 'marked';
+
+  // Opción recomendable (evita ids raros en SSR/hydration)
+  // marked.setOptions({ async: false, mangle: false, headerIds: false });
+  const md = (value: string) => marked.parse(value) as string;
+</script>
+
+# {m.how_to_be_stoic_title()}
+
+---
+
+{@html md(m.how_to_be_stoic_intro())}
+
+---
+
+## {m.how_to_be_stoic_habits_title()}
+
+#### 1. {(m.how_to_be_stoic_habit_1())}
+
+#### 2. {(m.how_to_be_stoic_habit_2())}
+
+#### 3. {(m.how_to_be_stoic_habit_3())}
+
+#### 4. {(m.how_to_be_stoic_habit_4())}
+
+#### 5. {(m.how_to_be_stoic_habit_5())}
+
+{@html md(m.how_to_be_stoic_marcus_quote())}
+
+{@html md(m.how_to_be_stoic_pigliucci_note())}
+
+---
+
+## {m.how_to_be_stoic_questions_title()}
+
+#### 1. {(m.how_to_be_stoic_q1())}
+
+#### 2. {(m.how_to_be_stoic_q2())}
+
+{@html md(m.how_to_be_stoic_kahneman_quote())}
+
+#### 3. {(m.how_to_be_stoic_q3())}
+
+{@html md(m.how_to_be_stoic_cato_quote())}
+
+---
+
+## {m.how_to_be_stoic_mindset_title()}
+
+{@html md(m.how_to_be_stoic_mindset_body())}

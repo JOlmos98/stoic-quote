@@ -1,0 +1,47 @@
+<script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+  import { marked } from 'marked';
+
+  const md = (text: string) => marked.parse(text ?? '');
+
+  export const metadata = {
+    title: m.the_great_stoics_title(),
+    description: m.the_great_stoics_title()
+  };
+</script>
+
+# {m.the_great_stoics_title()}
+
+## {m.the_great_stoics_zenon_title()}
+
+{@html md(m.the_great_stoics_zenon_body())}
+
+## {m.the_great_stoics_cleanthes_title()}
+
+{@html md(m.the_great_stoics_cleanthes_body())}
+
+## {m.the_great_stoics_chrysippus_title()}
+
+{@html md(m.the_great_stoics_chrysippus_body())}
+
+## {m.the_great_stoics_cato_title()}
+
+{@html md(m.the_great_stoics_cato_body())}
+
+## {m.the_great_stoics_seneca_title()}
+
+{@html md(m.the_great_stoics_seneca_body())}
+
+## {m.the_great_stoics_epictetus_title()}
+
+{@html md(m.the_great_stoics_epictetus_body())}
+
+## {m.the_great_stoics_marcus_aurelius_title()}
+
+{@html md(m.the_great_stoics_marcus_aurelius_body())}
+
+## {m.the_great_stoics_musonius_rufus_title()}
+
+{@html md(m.the_great_stoics_musonius_rufus_body())}
+
+{@html md(m.the_great_stoics_references())}

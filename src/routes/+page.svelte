@@ -3,51 +3,64 @@
   import Column from '$lib/components/SVGs/Column.svelte';
   import ScrollToTopButton from '$lib/components/ScrollToTopButton.svelte';
   import { goto } from '$app/navigation';
+  import { m } from '$lib/paraglide/messages.js';
+  import { getDayOfYearInTZ } from '$lib/dayOfYear';
+
+  const tz = 'Europe/Madrid';
+
+  let doy = 1;
+  let key = '2026_001';
+  let date = '';
+
+  function formatYMDInTZ(dateObj: Date, timeZone: string) {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(dateObj);
+
+    const y = parts.find((p) => p.type === 'year')!.value;
+    const m = parts.find((p) => p.type === 'month')!.value;
+    const d = parts.find((p) => p.type === 'day')!.value;
+    return `${y}/${m}/${d}`;
+  }
+
+  $: doy = getDayOfYearInTZ(new Date(), tz);
+  $: key = `2026_${String(doy).padStart(3, '0')}`;
+  $: date = formatYMDInTZ(new Date(), tz);
+
+  const fallbackKey = '2026_004';
+
+  $: dailyQuote = (m as any)[`quotes_${key}_quote`]?.() ?? (m as any)[`quotes_${fallbackKey}_quote`]?.() ?? '';
+  $: dailyAuthor = (m as any)[`quotes_${key}_author`]?.() ?? (m as any)[`quotes_${fallbackKey}_author`]?.() ?? '';
+  $: dailyReflection = (m as any)[`quotes_${key}_reflection`]?.() ?? (m as any)[`quotes_${fallbackKey}_reflection`]?.() ?? '';
+  $: dailyReference = (m as any)[`quotes_${key}_reference`]?.() ?? (m as any)[`quotes_${fallbackKey}_reference`]?.() ?? '';
 
   type Theme = 'stoic' | 'light' | 'dark';
   type PhilosopherKey = 'seneca' | 'marco_aurelio' | 'zenon';
 
-  // --- Tablas de imágenes por tema ---
   const Marco_Aurelio: Record<Theme, string> = { dark: 'https://i.imgur.com/kRgivLP.png', light: 'https://i.imgur.com/MnnwHb4.png', stoic: 'https://i.imgur.com/4hoP0je.png' };
   const Seneca: Record<Theme, string> = { dark: 'https://i.imgur.com/kErYSv2.png', light: 'https://i.imgur.com/bMsvk8g.png', stoic: 'https://i.imgur.com/X3h6jCZ.png' };
   const Zenon: Record<Theme, string> = { dark: 'https://i.imgur.com/aYk2h1A.png', light: 'https://i.imgur.com/7dMBWrp.png', stoic: 'https://i.imgur.com/YAJCZff.png' };
 
   const PHILOSOPHERS: Record<PhilosopherKey, Record<Theme, string>> = { seneca: Seneca, marco_aurelio: Marco_Aurelio, zenon: Zenon };
-  const ICONS: Record<Theme, string> = { light: 'https://i.imgur.com/euBs7nd.png', dark: 'https://i.imgur.com/5KcCa05.png', stoic: 'https://i.imgur.com/IszGtyr.png' };
   const LAURELS: Record<Theme, string> = { light: 'https://i.imgur.com/0BqUIS6.png', dark: 'https://i.imgur.com/STZpD5E.png', stoic: 'https://i.imgur.com/ku8YVNo.png' };
 
-  // --- Estado reactivo ---
-  let currentTheme: Theme = 'stoic';
-  let currentPhilosopher: PhilosopherKey = 'marco_aurelio';
-  let imageSrc: string;
-  let iconImage: string;
-  let laurelImage: string;
-
-  // Define la URL de destino
-  const urlFAQs = 'https://www.ejemplo.com/j-olmos';
-  const urlDoc = 'https://www.ejemplo.com/j-olmos';
-  const urlTech = 'https://www.ejemplo.com/j-olmos';
-  const urlDonar = 'https://www.ejemplo.com/j-olmos';
+  const urlDonar = 'https://www.paypal.com/es/home';
   const urlGithub = 'https://github.com/JOlmos98/stoic-quote';
   const urlJOlmos = 'https://portfolio-4mh1rt9a0-jesus-projects-8116cd3a.vercel.app/en';
 
+  let currentTheme: Theme = 'stoic';
+  let currentPhilosopher: PhilosopherKey = 'marco_aurelio';
+  let imageSrc: string;
+  let laurelImage: string;
+  let enableGsap = false;
+
+  // Define la URL de destino
   function goToFAQs() {
-    goto(urlFAQs);
+    goto('/docs/faqs');
   }
-  function goToDoc() {
-    goto(urlDoc);
+  function goToDocs() {
+    goto('/docs');
   }
   function goToTech() {
-    goto(urlTech);
-  }
-  function goToDonar() {
-    goto(urlDonar);
-  }
-  function goToGithub() {
-    goto(urlGithub);
-  }
-  function goToJOlmos() {
-    goto(urlJOlmos);
+    goto('/docs/this_project');
   }
 
   const updateThemeFromDom = () => {
@@ -68,6 +81,11 @@
     updateThemeFromDom();
     pickRandomPhilosopher();
 
+    const mq = window.matchMedia('(min-width: 768px)'); // md
+    const setBreakpoint = () => (enableGsap = mq.matches);
+    setBreakpoint();
+    mq.addEventListener('change', setBreakpoint);
+
     // Observa cambios en data-theme (cuando cambies de tema)
     const observer = new MutationObserver(() => {
       updateThemeFromDom();
@@ -75,22 +93,21 @@
 
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      mq.removeEventListener('change', setBreakpoint);
+    };
   });
 
-  const PHILOSOPHER_LABELS: Record<PhilosopherKey, string> = { seneca: 'Séneca, uno de los máximos exponentes del estoicismo.', marco_aurelio: 'Marco Aurelio, el emperador estoico.', zenon: 'Zenón de Citio, padre del estoicismo.' };
-
-  // Imagen final = filósofo aleatorio + tema actual
   $: imageSrc = PHILOSOPHERS[currentPhilosopher][currentTheme];
-
-  // Texto bajo la imagen según el filósofo actual
-  $: captionText = PHILOSOPHER_LABELS[currentPhilosopher];
-
-  $: iconImage = ICONS[currentTheme];
-
+  const fallbackPhilosopher: PhilosopherKey = 'marco_aurelio';
+  $: captionText = (m as any)[currentPhilosopher]?.() ?? (m as any)[fallbackPhilosopher]?.() ?? '';
   $: laurelImage = LAURELS[currentTheme];
+  $: shortQuote = (dailyQuote?.length ?? 0) < 90;
 
   onMount(async () => {
+    if (!enableGsap) return;
+
     // Import dinámico (cliente-only)
     const gsapModule = await import('gsap');
     const scrollTriggerModule = await import('gsap/ScrollTrigger');
@@ -158,22 +175,6 @@
     // Imagen de la sección 2
     gsap.from('.section-2-image', { scrollTrigger: { trigger: '.section-2', start: 'top 80%' }, opacity: 0, y: 40, scale: 0.5, duration: 1.4, ease: 'power2.out' });
 
-    gsap.from('.section-3 p', { scrollTrigger: { trigger: '.section-3', start: 'top 80%' }, opacity: 0, y: 90, scale: 0.75, duration: 1.2, ease: 'power3.out', stagger: 0.18 });
-
-    // Icono de la sección 3: aparece y crece al hacer scroll
-    gsap.from('.footer-icon', {
-      scrollTrigger: {
-        trigger: '.section-3',
-        start: 'top 50%', // cuando la sección 3 empieza a entrar
-        end: 'center center', // hasta mitad de viewport
-        scrub: true // ligado al scroll (crece progresivamente)
-      },
-      opacity: 0,
-      scale: 0.5,
-      y: 60,
-      ease: 'power2.out'
-    });
-
     // Corona de laurel sección 3 (animación independiente)
     gsap.fromTo(
       '.laurel-icon',
@@ -211,16 +212,16 @@
 <!-- Markup: los pilares están colocados con Tailwind en su posición final bg-[var(--bg)] text-[var(--fg)] -->
 <div class="flex min-h-screen flex-col items-center justify-center bg-[var(--bg)] p-8">
   <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <!-- Pilar izquierdo -->
-    <Column className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2" />
-
-    <!-- Pilar derecho -->
-    <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
-
-    <!-- Contenido textual (por encima de los pilares) -->
+    {#if enableGsap}
+      <!-- Pilar izquierdo -->
+      <Column className={shortQuote ? 'pillar1 pointer-events-none absolute top-[47%] -left-[100%] z-0 h-250 w-auto -translate-y-1/2' : 'pillar1 pointer-events-none absolute top-[47%] -left-[8%] z-0 h-250 w-auto -translate-y-1/2'} />
+      <!-- Pilar derecho -->
+      <Column className={shortQuote ? 'pillar2 pointer-events-none absolute top-[47%] -right-[100%] z-0 h-250 w-auto -translate-y-1/2' : 'pillar2 pointer-events-none absolute top-[47%] -right-[8%] z-0 h-250 w-auto -translate-y-1/2'} />
+    {/if}
+    <!-- Contenido textual (por encima de los pilares)  transition-transform duration-900 hover:scale-120 -->
     <div class="z-10 flex flex-col items-center px-4">
-      <p class="my-4 w-full text-center text-2xl md:w-2/3">No pierdas el tiempo en discutir con los estúpidos y los charlatanes: la palabra la tienen todos, el buen juicio sólo unos pocos.</p>
-      <p class="my-4 w-full text-center text-xl md:w-2/3">Catón el Joven</p>
+      <p class="my-4 w-full text-center text-2xl md:w-2/3">{dailyQuote}</p>
+      <p class="my-4 w-full text-center text-xl md:w-2/3">{dailyAuthor}</p>
     </div>
   </div>
 
@@ -241,11 +242,10 @@
 
     <!-- Texto derecha -->
     <div class="section-2-text flex max-w-xl flex-col text-left">
-      <p class="my-4 w-full text-left text-2xl">2026/01/01</p>
-      <p class="my-4 w-full text-left text-xl">
-        Aun con las mejores intenciones, infinidad de necios rechazarán tus consejos y sabiduría, más aún cuando estos contradicen su estilo de vida o alguno de sus ideales. Ni siquiera con pruebas empíricas conseguirás convencerlos. Rechazar una
-        idea con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
-      </p>
+      <p class="my-4 w-full text-left text-2xl">{date}</p>
+      <p class="my-4 w-full text-left text-xl">{dailyReflection}</p>
+      <p class="my-4 w-full text-left text-xl">{m.quoteReferencesTitle()}</p>
+      <p class="text-md my-4 w-full text-left">{dailyReference}</p>
     </div>
   </div>
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
@@ -254,93 +254,80 @@
       <img
         src={laurelImage}
         alt="laurel"
-        class="laurel-icon pointer-events-none z-10 h-180"
+        class="laurel-icon pointer-events-none z-10 h-140 md:h-180"
         aria-hidden="true"
       />
-
-      <!-- FAQs: centro pero un poco arriba a la izquierda -->
-      <!-- FAQs -->
-      <button
-        type="button"
-        class="footer-link absolute top-[25%] left-[18%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en FAQs')}
-      >
-        FAQs
-      </button>
-
       <!-- Doc -->
       <button
         type="button"
-        class="footer-link absolute top-[46%] left-[15%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en Doc')}
+        class="footer-link text-md absolute top-[32%] left-[22%] z-20 -translate-y-1/2
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[28%] md:left-[18%] md:text-4xl"
+        on:click={() => goToDocs()}
       >
-        Doc
+        Docs
+      </button>
+
+      <!-- FAQs -->
+      <button
+        type="button"
+        class="footer-link text-md absolute top-[44%] left-[20%] z-20
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[43%] md:left-[14%] md:text-4xl"
+        on:click={() => goToFAQs()}
+      >
+        FAQs
       </button>
 
       <!-- Tech -->
       <button
         type="button"
-        class="footer-link absolute top-[61%] left-[20%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en Tech')}
+        class="footer-link text-md absolute top-[60%] left-[24%] z-20
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[61%] md:left-[20%] md:text-4xl"
+        on:click={() => goToTech()}
       >
         Tech
       </button>
 
-      <!-- Donar -->
-      <button
-        type="button"
-        class="footer-link absolute top-[25%] right-[17%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+      <!-- Donation -->
+      <a
+        href={urlDonar}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link text-md absolute top-[30%] right-[21%] z-20
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[25%] md:right-[15%] md:text-4xl"
         on:click={() => console.log('Click en Donar')}
       >
-        Donar
-      </button>
+        {m.footerDonate()}
+      </a>
 
       <!-- GitHub -->
-      <!-- <button
-        type="button"
-        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={goToGithub}
-      >
-        GitHub
-      </button> -->
       <a
         href={urlGithub}
         target="_blank"
         rel="noopener noreferrer"
-        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        class="footer-link text-md absolute top-[47%] right-[17%] z-20 -translate-y-1/2
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[45%] md:right-[12%] md:text-4xl"
       >
         GitHub
       </a>
-
       <!-- J. Olmos -->
-      <!-- <button
-        type="button"
-        class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={goToJOlmos}
-      >
-        J. Olmos
-      </button> -->
       <a
         href={urlJOlmos}
         target="_blank"
         rel="noopener noreferrer"
-        class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        class="footer-link text-md absolute top-[60%] right-[20%] z-20
+         cursor-pointer tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)]
+         md:top-[61%] md:right-[15%] md:text-4xl"
       >
         J. Olmos
       </a>

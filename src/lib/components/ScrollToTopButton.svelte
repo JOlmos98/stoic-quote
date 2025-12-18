@@ -36,13 +36,14 @@
     if (typeof window === 'undefined') return;
     window.removeEventListener('scroll', handleScroll);
   });
+  // hover:bg-[var(--accent)]
 </script>
 
 <button
   type="button"
   on:click={scrollToTop}
   aria-label="Volver arriba"
-  class="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--fg)] bg-[var(--bg)] text-[var(--fg)] shadow-lg transition-all duration-300 hover:scale-110 hover:bg-[var(--accent)]"
+  class="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--fg)] bg-[var(--bg)] text-[var(--fg)] shadow-lg transition-all duration-300 hover:scale-110 "
   class:opacity-0={!visible}
   class:translate-y-4={!visible}
   class:pointer-events-none={!visible}

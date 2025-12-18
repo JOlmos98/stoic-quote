@@ -1,0 +1,35 @@
+---
+title: "FAQs"
+description: "StoicQuote FAQs"
+---
+
+<script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+  import { marked } from 'marked';
+
+  // Opción recomendable (evita ids raros en SSR/hydration)
+  // marked.setOptions({ async: false, mangle: false, headerIds: false });
+  const md = (value: string) => marked.parse(value) as string;
+</script>
+
+# {m.faqs_title()}
+
+---
+
+## 1. {m.faqs_q1_question()}
+{@html md(m.faqs_q1_answer())}
+
+## 2. {m.faqs_q2_question()}
+{@html md(m.faqs_q2_answer())}
+
+## 3. {m.faqs_q3_question()}
+{@html md(m.faqs_q3_answer())}
+
+## 4. {m.faqs_q4_question()}
+{@html md(m.faqs_q4_answer())}
+
+## 5. {m.faqs_q5_question()}
+{@html md(m.faqs_q5_answer())}
+
+## 6. {m.faqs_q6_question()}
+{@html md(m.faqs_q6_answer())}
