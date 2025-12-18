@@ -25,7 +25,7 @@
   $: key = `2026_${String(doy).padStart(3, '0')}`;
   $: date = formatYMDInTZ(new Date(), tz);
 
-  const fallbackKey = '2026_004';
+  const fallbackKey = '2026_001';
 
   $: dailyQuote = (m as any)[`quotes_${key}_quote`]?.() ?? (m as any)[`quotes_${fallbackKey}_quote`]?.() ?? '';
   $: dailyAuthor = (m as any)[`quotes_${key}_author`]?.() ?? (m as any)[`quotes_${fallbackKey}_author`]?.() ?? '';
@@ -214,9 +214,9 @@
   <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
     {#if enableGsap}
       <!-- Pilar izquierdo -->
-      <Column className={shortQuote ? 'pillar1 pointer-events-none absolute top-[47%] -left-[100%] z-0 h-250 w-auto -translate-y-1/2' : 'pillar1 pointer-events-none absolute top-[47%] -left-[8%] z-0 h-250 w-auto -translate-y-1/2'} />
+      <Column className={shortQuote ? 'pillar1 pointer-events-none absolute top-[47%] -left-[70%] z-0 h-250 w-auto -translate-y-1/2' : 'pillar1 pointer-events-none absolute top-[47%] -left-[8%] z-0 h-250 w-auto -translate-y-1/2'} />
       <!-- Pilar derecho -->
-      <Column className={shortQuote ? 'pillar2 pointer-events-none absolute top-[47%] -right-[100%] z-0 h-250 w-auto -translate-y-1/2' : 'pillar2 pointer-events-none absolute top-[47%] -right-[8%] z-0 h-250 w-auto -translate-y-1/2'} />
+      <Column className={shortQuote ? 'pillar2 pointer-events-none absolute top-[47%] -right-[70%] z-0 h-250 w-auto -translate-y-1/2' : 'pillar2 pointer-events-none absolute top-[47%] -right-[8%] z-0 h-250 w-auto -translate-y-1/2'} />
     {/if}
     <!-- Contenido textual (por encima de los pilares)  transition-transform duration-900 hover:scale-120 -->
     <div class="z-10 flex flex-col items-center px-4">
