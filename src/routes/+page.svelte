@@ -26,6 +26,7 @@
   let imageSrc: string;
   let iconImage: string;
   let laurelImage: string;
+  let enableGsap = false;
 
   //* CREAR VARIABLES PARA LOS TEXTOS PARA MANEJAR POSTERIORMENTE CON PARAGLIDE
 
@@ -63,6 +64,11 @@
     updateThemeFromDom();
     pickRandomPhilosopher();
 
+    const mq = window.matchMedia('(min-width: 768px)'); // md
+    const setBreakpoint = () => (enableGsap = mq.matches);
+    setBreakpoint();
+    mq.addEventListener('change', setBreakpoint);
+
     // Observa cambios en data-theme (cuando cambies de tema)
     const observer = new MutationObserver(() => {
       updateThemeFromDom();
@@ -70,22 +76,23 @@
 
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-    return () => observer.disconnect();
+    // return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      mq.removeEventListener('change', setBreakpoint);
+    };
   });
 
   const PHILOSOPHER_LABELS: Record<PhilosopherKey, string> = { seneca: 'Séneca, uno de los máximos exponentes del estoicismo.', marco_aurelio: 'Marco Aurelio, el emperador estoico.', zenon: 'Zenón de Citio, padre del estoicismo.' };
 
-  // Imagen final = filósofo aleatorio + tema actual
   $: imageSrc = PHILOSOPHERS[currentPhilosopher][currentTheme];
-
-  // Texto bajo la imagen según el filósofo actual
   $: captionText = PHILOSOPHER_LABELS[currentPhilosopher];
-
   $: iconImage = ICONS[currentTheme];
-
   $: laurelImage = LAURELS[currentTheme];
 
   onMount(async () => {
+    if (!enableGsap) return;
+
     // Import dinámico (cliente-only)
     const gsapModule = await import('gsap');
     const scrollTriggerModule = await import('gsap/ScrollTrigger');
@@ -206,12 +213,12 @@
 <!-- Markup: los pilares están colocados con Tailwind en su posición final bg-[var(--bg)] text-[var(--fg)] -->
 <div class="flex min-h-screen flex-col items-center justify-center bg-[var(--bg)] p-8">
   <div class="section-1 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
-    <!-- Pilar izquierdo -->
-    <Column className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2" />
-
-    <!-- Pilar derecho -->
-    <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
-
+    {#if enableGsap}
+      <!-- Pilar izquierdo -->
+      <Column className="pillar1 pointer-events-none absolute top-[47%] -left-[18%] z-0 h-250 w-auto -translate-y-1/2" />
+      <!-- Pilar derecho -->
+      <Column className="pillar2 pointer-events-none absolute top-[47%] -right-[18%] z-0 h-250 w-auto -translate-y-1/2" />
+    {/if}
     <!-- Contenido textual (por encima de los pilares)  transition-transform duration-900 hover:scale-120 -->
     <div class="z-10 flex flex-col items-center px-4">
       <p class="my-4 w-full text-center text-2xl md:w-2/3">No pierdas el tiempo en discutir con los estúpidos y los charlatanes: la palabra la tienen todos, el buen juicio sólo unos pocos.</p>
@@ -226,7 +233,7 @@
       <img
         src={imageSrc}
         alt="Philosopher"
-        class="pointer-events-none h-64 w-auto transition-transform duration-800 ease-out group-hover:scale-105 md:h-130"
+        class="pointer-events-none h-64 md:h-130 w-auto transition-transform duration-800 ease-out group-hover:scale-105 "
         aria-hidden="true"
       />
       <p class="text-md text-[var(--bg)] transition-colors duration-800 ease-out group-hover:scale-105 group-hover:text-[var(--fg)] md:text-base">
@@ -242,7 +249,8 @@
         idea con la que llevas tiempo identificándote es algo moralmente muy doloroso; sólo los sabios están dispuestos a lidiar con ello.
       </p>
       <p class="my-4 w-full text-left text-xl">Referencias de la cita:</p>
-      {references}
+      <p class="my-4 w-full text-left text-md">{references}</p>
+    
     </div>
   </div>
   <div class="section-3 relative flex min-h-screen flex-col items-center justify-center font-semibold text-[var(--fg)]">
@@ -251,15 +259,16 @@
       <img
         src={laurelImage}
         alt="laurel"
-        class="laurel-icon pointer-events-none z-10 h-180"
+        class="laurel-icon pointer-events-none z-10 h-140 md:h-180"
         aria-hidden="true"
       />
       <!-- Doc -->
       <button
         type="button"
-        class="footer-link absolute top-[28%] left-[18%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        class="footer-link text-md absolute top-[32%] left-[22%] z-20 -translate-y-1/2
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[28%] md:left-[18%] md:text-4xl"
         on:click={() => goToDocs()}
       >
         Docs
@@ -268,9 +277,10 @@
       <!-- FAQs -->
       <button
         type="button"
-        class="footer-link absolute top-[43%] left-[14%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        class="footer-link text-md absolute top-[44%] left-[20%] z-20
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[43%] md:left-[14%] md:text-4xl"
         on:click={() => goToFAQs()}
       >
         FAQs
@@ -279,42 +289,58 @@
       <!-- Tech -->
       <button
         type="button"
-        class="footer-link absolute top-[61%] left-[20%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
-        on:click={() => console.log('Click en Tech')}
+        class="footer-link text-md absolute top-[60%] left-[24%] z-20
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[61%] md:left-[20%] md:text-4xl"
+        on:click={() => goToTech()}
       >
         Tech
       </button>
+
       <!-- Donation -->
       <button
         type="button"
-        class="footer-link absolute top-[25%] right-[17%] z-20 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        class="footer-link text-md absolute top-[30%] right-[21%] z-20
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[25%] md:right-[17%] md:text-4xl"
         on:click={() => console.log('Click en Donar')}
       >
         Donar
       </button>
+
       <!-- GitHub -->
       <a
         href={urlGithub}
         target="_blank"
         rel="noopener noreferrer"
-        class="footer-link absolute top-[45%] right-[12%] z-20 -translate-y-1/2 cursor-pointer
-         text-3xl tracking-wide text-[var(--muted)]
-         transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+        class="footer-link text-md absolute top-[47%] right-[17%] z-20 -translate-y-1/2
+   cursor-pointer tracking-wide text-[var(--muted)]
+   transition-colors duration-500 hover:text-[var(--bg)]
+   md:top-[45%] md:right-[12%] md:text-4xl"
       >
         GitHub
       </a>
       <!-- J. Olmos -->
-      <a
+      <!-- <a
         href={urlJOlmos}
         target="_blank"
         rel="noopener noreferrer"
         class="footer-link absolute top-[61%] right-[15%] z-20 cursor-pointer
          text-3xl tracking-wide text-[var(--muted)]
          transition-colors duration-500 hover:text-[var(--bg)] md:text-4xl"
+      >
+        J. Olmos
+      </a> -->
+      <a
+        href={urlJOlmos}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link text-md absolute top-[60%] right-[20%] z-20
+         cursor-pointer tracking-wide text-[var(--muted)]
+         transition-colors duration-500 hover:text-[var(--bg)]
+         md:top-[61%] md:right-[15%] md:text-4xl"
       >
         J. Olmos
       </a>

@@ -17,7 +17,7 @@
   $: label = locale.toUpperCase();
 </script>
 
-<div class="fixed top-4 left-1/2 z-50 ml-8 -translate-x-1/2">
+<div class="fixed top-4 left-[50%] md:left-1/2 z-50 ml-8 -translate-x-1/2">
   <button
     type="button"
     on:click={toggleLocale}

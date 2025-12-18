@@ -24,7 +24,7 @@
 </script>
 
 <!-- Botón fijo, centrado arriba  rounded-full border border-[var(--fg)] shadow-lg bg-[var(--bg)] hover:bg-[var(--accent)] hover:text-[var(--fg)]-->
-<div class="fixed top-4 left-1/2 z-50 -translate-x-1/2 mr-8">
+<div class="fixed top-4 left-[45%] md:left-1/2 z-50 -translate-x-1/2 mr-8">
   <button
     type="button"
     on:click={cycleTheme}
