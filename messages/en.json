@@ -96,6 +96,9 @@
   "the_great_stoics_references": "###### References: Recuenco, J. G., & de Haro, G. (2022). *El pequeño libro de la filosofía estoica*. Alienta Editorial.",
   "quoteReferencesTitle": "Quote references:",
   "footerDonate": "Donate",
+  "seneca": "Seneca, one of Stoicism’s greatest exponents.",
+  "marco_aurelio": "Marcus Aurelius, the Stoic emperor.",
+  "zenon": "Zeno of Citium, the founder of Stoicism.",
   "quotes_2026_001_quote": "Don’t waste time arguing with fools and charlatans: everyone gets a word, but sound judgment belongs to only a few.",
   "quotes_2026_001_author": "Cato the Younger",
   "quotes_2026_001_reflection": "Even with the best intentions, countless fools will reject your advice and wisdom—especially when it clashes with their lifestyle or cherished ideals. Not even hard evidence will convince them. Letting go of an idea you’ve identified with for a long time is morally painful; only the wise are willing to face that discomfort.",
@@ -119,9 +122,5 @@
   "quotes_2026_006_quote": "We should be obsessed with making sure our opinions are based only on facts.",
   "quotes_2026_006_author": "Bertrand Russell",
   "quotes_2026_006_reflection": "Although Russell isn’t officially considered a Stoic, many of his lines carry a distinctly Stoic spirit. Here he pushes the reader to avoid speaking when it isn’t necessary, to stay quiet when you don’t know, and to resist offering opinions gratuitously.\n\nA Nobel Prize in Literature (1950), a committed rationalist, he defended values centered on empiricism and secular humanism—values that align closely with Stoicism. Rationalism seeks reason; empiricism insists on observation and scientific evidence in the relentless pursuit of truth; and secular humanism—while rejecting the Stoic Logos—grounds ethics in logic, science, empathy, and social justice, all closely aligned with Stoic practice.",
-  "quotes_2026_006_reference": "Russell, B. (c. 1928–1950). Thoughts on grounding opinions in evidence (various works and interviews).",
-  "seneca": "Seneca, one of Stoicism’s greatest exponents.",
-"marco_aurelio": "Marcus Aurelius, the Stoic emperor.",
-"zenon": "Zeno of Citium, the founder of Stoicism."
-
+  "quotes_2026_006_reference": "Russell, B. (c. 1928–1950). Thoughts on grounding opinions in evidence (various works and interviews)."
 }
