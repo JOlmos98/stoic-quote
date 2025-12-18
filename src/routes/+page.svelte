@@ -260,7 +260,7 @@
       <!-- Doc -->
       <button
         type="button"
-        class="footer-link text-md absolute top-[32%] left-[22%] z-20 -translate-y-1/2
+        class="footer-link text-sm absolute top-[32%] left-[22%] z-20 -translate-y-1/2
    cursor-pointer tracking-wide text-[var(--muted)]
    transition-colors duration-500 hover:text-[var(--bg)]
    md:top-[28%] md:left-[18%] md:text-4xl"
@@ -272,7 +272,7 @@
       <!-- FAQs -->
       <button
         type="button"
-        class="footer-link text-md absolute top-[44%] left-[20%] z-20
+        class="footer-link text-sm absolute top-[45%] left-[20%] z-20
    cursor-pointer tracking-wide text-[var(--muted)]
    transition-colors duration-500 hover:text-[var(--bg)]
    md:top-[43%] md:left-[14%] md:text-4xl"
@@ -284,7 +284,7 @@
       <!-- Tech -->
       <button
         type="button"
-        class="footer-link text-md absolute top-[60%] left-[24%] z-20
+        class="footer-link text-sm absolute top-[60%] left-[24%] z-20
    cursor-pointer tracking-wide text-[var(--muted)]
    transition-colors duration-500 hover:text-[var(--bg)]
    md:top-[61%] md:left-[20%] md:text-4xl"
@@ -298,7 +298,7 @@
         href={urlDonar}
         target="_blank"
         rel="noopener noreferrer"
-        class="footer-link text-md absolute top-[30%] right-[21%] z-20
+        class="footer-link text-sm absolute top-[30%] right-[21%] z-20
    cursor-pointer tracking-wide text-[var(--muted)]
    transition-colors duration-500 hover:text-[var(--bg)]
    md:top-[25%] md:right-[15%] md:text-4xl"
@@ -312,7 +312,7 @@
         href={urlGithub}
         target="_blank"
         rel="noopener noreferrer"
-        class="footer-link text-md absolute top-[47%] right-[17%] z-20 -translate-y-1/2
+        class="footer-link text-sm absolute top-[47%] right-[17%] z-20 -translate-y-1/2
    cursor-pointer tracking-wide text-[var(--muted)]
    transition-colors duration-500 hover:text-[var(--bg)]
    md:top-[45%] md:right-[12%] md:text-4xl"
@@ -324,7 +324,7 @@
         href={urlJOlmos}
         target="_blank"
         rel="noopener noreferrer"
-        class="footer-link text-md absolute top-[60%] right-[20%] z-20
+        class="footer-link text-sm absolute top-[60%] right-[20%] z-20
          cursor-pointer tracking-wide text-[var(--muted)]
          transition-colors duration-500 hover:text-[var(--bg)]
          md:top-[61%] md:right-[15%] md:text-4xl"
